@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView, View, Text, TextInput, ScrollView, TouchableOpacity, Button} from 'react-native';
+import {SafeAreaView, View, Text, TextInput, ScrollView, TouchableOpacity, Button, Image} from 'react-native';
 import styled from '@emotion/native';
 import PropTypes from 'prop-types'
 import Task from '../../../src/component/Task';
@@ -41,24 +41,24 @@ export default function MainList({navigation}){
     onSubmitEditing:PropTypes.func.isRequired
   };
   
-  function AddTask(){
-    const ID = Date.now().toString();
-    const newTaskObject ={
-      [ID]: {id: ID, text: newTask, completed:false}
-    };
-    setNewTask('');
-    setTasks({...tasks, ...newTaskObject})
-  }
+  // function AddTask(){
+  //   const ID = Date.now().toString();
+  //   const newTaskObject ={
+  //     [ID]: {id: ID, text: newTask, completed:false}
+  //   };
+  //   setNewTask('');
+  //   setTasks({...tasks, ...newTaskObject})
+  // }
 
   function HandleTextChange (text){
     setNewTask(text)
   }
   
-  const ToggleTask = id => {
-    const cureentTasks = Object.assign({},tasks);
-    currentTasks[id]['completed'] = !currentTasks[id]['completed']
-    setTasks(currentTasks)
-  }
+  // const ToggleTask = id => {
+  //   const cureentTasks = Object.assign({},tasks);
+  //   currentTasks[id]['completed'] = !currentTasks[id]['completed']
+  //   setTasks(currentTasks)
+  // }
   console.log('aaa',Object.values(tasks))
   
     return(
@@ -69,13 +69,16 @@ export default function MainList({navigation}){
         <IconButton type={Images.Calendar} onPressOut={() => navigation.navigate('Calendar')}/>
         </View>
           <Date_Wrapper>
+            <Text>오늘</Text>
+            <View style={{flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
           <IconButton type={Images.left_arrow} onPressOut={Yesterday}/>
         <Date_font onPress={Today}>{date}</Date_font>
         <IconButton type={Images.right_arrow} onPressOut={Tomorrow}/>
+        </View>
         </Date_Wrapper>
         </Title_Wrapper>
         <CardWrapper>
-        <Input_Wrapper>
+        {/* <Input_Wrapper>
         <Input 
             placeholder='일정을 추가 해주세요...(30자 내외)' 
             placeholderTextColor={'#999'} 
@@ -87,7 +90,7 @@ export default function MainList({navigation}){
             onChangeText={HandleTextChange}
             onSubmitEditing={AddTask}            
         />
-      </Input_Wrapper>
+      </Input_Wrapper> */}
 
       <ScrollView style={{flex:1}}>
         {Object.values(tasks)[0]
@@ -103,9 +106,9 @@ export default function MainList({navigation}){
         </View>
         }
         </ScrollView>
-        <TouchableOpacity onPressOut={() => navigation.navigate('Register')} >
-          <Text>등록하기</Text>
-          </TouchableOpacity>
+          <RegisterBtn onPressOut={() => navigation.navigate('Register')} >
+            <ButtonImage source={require('../../../public/images/List/Add.png')}/>
+          </RegisterBtn> 
         </CardWrapper>
       </SafeArea>
     </>
@@ -150,11 +153,15 @@ const Title_Wrapper = styled.View`
 
 const CardWrapper = styled(View)`
   background-color:#fff;
-  /* border: 1px solid blasck; */
+  /* border: 1px solid black; */
   flex: 1;
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  justify-content: center;
+  align-items: center;
+  elevation:20;
+  /* border-top-width: 1px; */
 `
 
 const Input_Wrapper = styled(View)`
@@ -179,9 +186,23 @@ const Date_font = styled(Text)`
 `
 
 const Date_Wrapper = styled(View)`
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
- 
+`
+const RegisterBtn = styled(TouchableOpacity)`
+  width: 50px;
+  height: 50px;
+  /* border: 1px solid black; */
+  position: absolute;
+  left: 300px;
+  bottom: 10px;
+  z-index: 1;
+`
+
+const ButtonImage = styled(Image)`
+  width: 50px;
+  height: 50px;
+  /* border: 1px solid black; */
 `
