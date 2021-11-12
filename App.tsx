@@ -6,6 +6,8 @@ import LoginPage from './pages/screens/LoginScreen';
 import MainListNavigation from './pages/navigation/MainListNavigation';
 import MyPage from './pages/navigation/MypageNavigation';
 
+// detail page import
+import Detail from "./pages/screens/Detail/index"
 
 const Tab = createBottomTabNavigator()
 
@@ -39,7 +41,7 @@ export default function App() {
           )}}
         />
         <Tab.Screen name="Detail" 
-          component={MainListNavigation} 
+          component={Detail} 
           options={{headerShown:false, tabBarIcon:()=>(<Ionicons 
                     name="list-outline"
                     size={20}/>
