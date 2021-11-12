@@ -1,16 +1,3 @@
-// import React from 'react';
-// import {Text, View} from 'react-native';
-// import {GoogleSigninButton} from '@react-native-community/google-signin';
-
-// export default function LoginScreen(props) {
-//   return (
-//     <View>
-//       <Text>Login Page입니다</Text>
-//       <GoogleSigninButton onPress={props.onGoogleButtonPress} />
-//     </View>
-//   );
-// }
-
 import React from 'react';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-community/google-signin';
@@ -32,11 +19,12 @@ const Wrapper = styled(View)`
 
 
 const Logo = styled(Image)`
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 100px;
-
+  flex: 0.115;
+  width: 75%;
+  /* height: 0%; */
+  /* resize: contain; */
+  margin-bottom: 30px;
+  /* border: 1px solid black; */
 `
 
 
@@ -52,7 +40,7 @@ export default function LoginPage({navigation}){
     });
   }, []);
 
-  async function onGoogleButtonPress() {
+  async function onGoogleButtonPress(props) {
     console.log('ffff')
 
     const { idToken } = await GoogleSignin.signIn();
@@ -77,10 +65,12 @@ export default function LoginPage({navigation}){
           setLoggedIn(false);
         }
     });
+    
 
     return (
+      
       <Wrapper>
-        <Logo source={require('../../public/images/Logo/LogoExample.png')}/>
+        <Logo source={require('../../public/images/Logo/DogetherLogo.png')}/>
         <GoogleSigninButton onPress={onGoogleButtonPress} />
       </Wrapper>
 

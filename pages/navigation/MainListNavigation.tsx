@@ -10,6 +10,7 @@ export default function MainListNavigation() {
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="MainList" component={MainList} />
         <Stack.Screen name="Register" component={Register} />
+        {/* <Stack.Screen name="Detail" component={Detail} /> */}
         <Stack.Screen name="Calendar" component={Calendar} />
       </Stack.Navigator>
   );

@@ -13,7 +13,7 @@ export default function App() {
 
   return(
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="LoginPage" screenOptions={{tabBarActiveTintColor:'red', tabBarActiveBackgroundColor:'beige'}} >
+      <Tab.Navigator initialRouteName="LoginPage" screenOptions={{tabBarActiveTintColor:'red', tabBarActiveBackgroundColor:'beige', tabBarHideOnKeyboard:true}} >
         <Tab.Screen name="LoginPage" 
           component={LoginPage}
           options={{headerShown:false, tabBarIcon:() => (<Ionicons
