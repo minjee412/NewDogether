@@ -5,6 +5,9 @@ import { SafeAreaView, View, Image, Text, TextInput, ScrollView, TouchableOpacit
 export const SafeArea = styled(SafeAreaView)`
     flex: 1;
     background-color: #ffffff;
+    justify-content: space-between;
+`
+export const SafeAreaTop = styled(View)`
 `
 export const Header = styled(View)`
     width: 100%;
@@ -15,7 +18,6 @@ export const Header = styled(View)`
     flex-direction: row;
     align-items: center;
     elevation: 4;
-
 `
 export const Button = styled(Image)`
     width: 20px;
@@ -37,6 +39,9 @@ export const HeaderTitle = styled(Text)`
     color: #000000;
 `
 export const Body = styled(View)`
+
+`
+export const BodyTop = styled(View)`
     padding: 19px 32px ;
 `
 export const BodyTitle = styled(Text)`
@@ -51,7 +56,7 @@ export const BodyContent = styled(Text)`
     color: #888888;
     margin-top: 19px;
 `
-export const Body2 = styled(View)`
+export const BodyMiddel = styled(View)`
     height: 52px;
     border-width: 1px 0;
     border-color: #f4f4f4;
@@ -70,8 +75,8 @@ export const BodyText = styled(Text)`
     color: #000000;
     elevation: 4;
 `
-export const Body3 = styled(View)`
-    height: 240px;
+export const BodyBottom = styled(View)`
+
 `
 export const Footer = styled(View)`
     height: 76px;
