@@ -19,7 +19,7 @@ export const Header = styled(View)`
     align-items: center;
     elevation: 4;
 `
-export const Button = styled(Image)`
+export const Button1 = styled(Image)`
     width: 20px;
     height: 20px;
 `

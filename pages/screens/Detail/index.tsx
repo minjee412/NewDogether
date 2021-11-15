@@ -3,7 +3,7 @@ import {
     SafeArea,
     SafeAreaTop,
     Header,
-    Button,
+    Button1,
     Button2,
     HeaderTitle,
     Body,
@@ -12,9 +12,7 @@ import {
     BodyBottom,
     BodyTitle,
     BodyContent,
-    // Body2,
     BodyText,
-    // Body3,
     Footer,
     InnerFooter,
     InputBar,
@@ -23,7 +21,7 @@ import {
 import {ScrollView, TouchableOpacity} from "react-native"
 
 
-export default function Detail(){
+export default function Detail({navigation}){
 
     // dummy data
     const Aaa = [
@@ -37,14 +35,14 @@ export default function Detail(){
             <SafeArea>
                 <SafeAreaTop>
                     <Header>
-                        {/* <TouchableOpacity onPressOut={() => navigation.navigate('Calendar')}> */}
-                            <Button
+                        <TouchableOpacity onPressOut={() => navigation.pop()}>
+                            <Button1
                                 source={require("../../../public/images/List/left-arrow.png")}
                             />
-                        {/* </TouchableOpacity> */}
+                        </TouchableOpacity>
                         <HeaderTitle>11/1의 두게더</HeaderTitle>
                         <Button2 source={require("../../../public/images/List/pencil.png")}/>
-                        <Button source={require("../../../public/images/List/delete.png")}/>
+                        <Button1 source={require("../../../public/images/List/delete.png")}/>
                     </Header>
                     <Body>
                         <BodyTop>
