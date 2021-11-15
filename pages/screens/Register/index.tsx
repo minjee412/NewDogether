@@ -90,7 +90,7 @@ export default function Register(props) {
                 place:place,
                 id:ID,
                 important:important,
-                date:date,
+                date:date
             })
             alert('등록되었습니다.');
             console.log(result);
