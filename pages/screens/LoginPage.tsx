@@ -6,6 +6,7 @@ import MainListNavigation from '../navigation/MainListNavigation'
 import styled from '@emotion/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore'
+import ActivityIndicator from './ActivityIndicator/index'
 
 export default function LoginPage() { 
 
@@ -30,7 +31,12 @@ export default function LoginPage() {
   }
 
   if (loggedIn) {
-    return <MainListNavigation />
+    return (
+      <>  
+        <ActivityIndicator/>
+        <MainListNavigation/>
+      </>
+    )
   }
     auth().onAuthStateChanged((user) => {
         if (user) {
@@ -45,8 +51,6 @@ export default function LoginPage() {
       <Logo source={require('../../public/images/Logo/DogetherLogo.png')}/>
       <GoogleSigninButton 
         onPress={onGoogleButtonPress}
-        
-        
       />
     </Wrapper>
   )    
