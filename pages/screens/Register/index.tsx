@@ -6,6 +6,8 @@ import ImportantPicker from '../../../src/component/Picker/ImportantPicker';
 import DatePick from '../../../src/component/Picker/DatePicker';
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
+import 'react-native-get-random-values'
+
 import {v4} from 'uuid'
 
 
@@ -57,24 +59,45 @@ const Input = styled(TextInput)`
     margin-bottom: 10px;
 `
 
-export default function Register({title,contents,place,important,id}) {
+export default function Register(props) {
     const user = auth().currentUser;
 
     const [todo,setTodo] = useState('');
     const [details, setDetails] = useState('')
+    const [place , setPlace] = useState('');
+    const [important, setImportant] = useState('');
+    const [date, setDate] = useState(new Date())
 
-    function Submit (){
-        firestore()
+
+    const ID = v4();
+    // console.log(v4());
+
+    console.log(place);
+    console.log(important);
+    console.log(date);
+
+
+
+
+    async function Submit (){
+        try{const result = await firestore()
             .collection('Users')
             .doc(user.email)
             .collection("Todo")
             .add({
-                title:{todo},
-                contents:{details},
-                place:{place},
-                id:{v4},
-                important:{important}
+                title:todo,
+                contents:details,
+                place:place,
+                id:ID,
+                important:important,
+                date:date.slice(1,11) ,
             })
+            alert('등록되었습니다.')
+            console.log(result)
+        } catch(error){
+            console.log(error)
+        }
+        
     }
 
 	return (
@@ -90,10 +113,10 @@ export default function Register({title,contents,place,important,id}) {
                 <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' maxLength={100} value={details} onChangeText={setDetails}></Input>
                 
             <View style={{flexDirection:'row'}}>
-                <PlacePicker value={place}/>
-                <ImportantPicker value={important}/>
+                <PlacePicker value={place} setPlace={setPlace} place={place}/>
+                <ImportantPicker value={important} setImportant={setImportant} important={important}/>
             </View>
-            <DatePick />
+            <DatePick date={date} setDate={setDate} />
             </Card_Wrapper>
         </Wrapper>
 	);
