@@ -13,15 +13,12 @@ import {
     BodyTitle,
     BodyContent,
     BodyText,
-    Footer,
-    InnerFooter,
-    InputBar,
-    SendIcon
 } from "./Detail.styles"
 import {ScrollView, TouchableOpacity} from "react-native"
+import MemoWrite from "../../../src/component/memo/memoWrite"
+// import MemoList from "../../../src/component/memo/memoList"
 
-
-export default function Detail({navigation}){
+function Detail({navigation}){
 
     // dummy data
     const Aaa = [
@@ -47,7 +44,7 @@ export default function Detail({navigation}){
                     <Body>
                         <BodyTop>
                             <BodyTitle>간식 차려먹기</BodyTitle>
-                            <BodyContent>콘푸라이트 한그릇 맛있게 먹기</BodyContent>
+                            <BodyContent>콘푸라이트 두그릇 맛있게 먹기</BodyContent>
                         </BodyTop>
                         <BodyMiddel>
                             <ScrollView horizontal={true}>
@@ -64,16 +61,10 @@ export default function Detail({navigation}){
                         <BodyBottom></BodyBottom>
                     </Body>
                 </SafeAreaTop>
-                <Footer>
-                    <InnerFooter> 
-                        <InputBar 
-                            placeholder="댓글을 입력하세요"
-                            placeholderTextColor={"#888888"}
-                        />
-                        <SendIcon source={require("../../../public/images/List/send.png")}/>
-                    </InnerFooter>
-                </Footer>
+                <MemoWrite/>
             </SafeArea>
         </>
     )
 }
+
+export default Detail;
