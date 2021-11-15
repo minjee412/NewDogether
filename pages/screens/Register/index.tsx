@@ -92,8 +92,9 @@ export default function Register(props) {
                 important:important,
                 date:date
             })
-            alert('등록되었습니다.')
-            console.log(result)
+            alert('등록되었습니다.');
+            console.log(result);
+            props.navigation.navigate('MainList');
         } catch(error){
             console.log(error)
         }

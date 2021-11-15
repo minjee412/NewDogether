@@ -30,11 +30,12 @@ export default function ImportantPicker(props){
         }
         // dropdownIconColor='blue'
         mode='dialog'
-        style={{borderWidth:1, borderStyle:'solid'}}>
-        <Picker.Item label='    🔴  (1순위)   ' value='first' />
-        <Picker.Item label='    🟠  (2순위)    ' value='second' />
-        <Picker.Item label='    🟢  (3순위)    ' value='thrid' />
-        <Picker.Item label='    🔵  (4순위)    ' value='forth' />
+        style={{borderWidth:1, borderStyle:'solid'}}
+        >
+        <Picker.Item label='    🔴  (1순위)   ' value='1' />
+        <Picker.Item label='    🟠  (2순위)    ' value='2' />
+        <Picker.Item label='    🟢  (3순위)    ' value='3' />
+        <Picker.Item label='    🔵  (4순위)    ' value='4' />
       </Picker>
     </Container>
     </Wrapper>

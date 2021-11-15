@@ -39,9 +39,9 @@ export default function PlacePicker(props){
         // dropdownIconColor='blue'
         mode='dialog'
         style={{borderWidth:1, borderStyle:'dashed'}}>
-        <Picker.Item label='🏠 집' value='집' />
-        <Picker.Item label='🏢 회사' value="회사" />
-        <Picker.Item label='🏫 학교' value='학교' />
+        <Picker.Item label='🏠 집' value='🏠 집' />
+        <Picker.Item label='🏢 회사' value="🏢 회사" />
+        <Picker.Item label='🏫 학교' value='🏫 학교' />
       </Picker>
     </Container>
     </Wrapper>
