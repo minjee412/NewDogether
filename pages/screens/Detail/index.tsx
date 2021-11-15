@@ -3,7 +3,7 @@ import {
     SafeArea,
     SafeAreaTop,
     Header,
-    Button,
+    Button1,
     Button2,
     HeaderTitle,
     Body,
@@ -12,18 +12,13 @@ import {
     BodyBottom,
     BodyTitle,
     BodyContent,
-    // Body2,
     BodyText,
-    // Body3,
-    Footer,
-    InnerFooter,
-    InputBar,
-    SendIcon
 } from "./Detail.styles"
 import {ScrollView, TouchableOpacity} from "react-native"
+import MemoWrite from "../../../src/component/memo/memoWrite"
+// import MemoList from "../../../src/component/memo/memoList"
 
-
-export default function Detail(){
+function Detail({navigation}){
 
     // dummy data
     const Aaa = [
@@ -37,19 +32,19 @@ export default function Detail(){
             <SafeArea>
                 <SafeAreaTop>
                     <Header>
-                        {/* <TouchableOpacity onPressOut={() => navigation.navigate('Calendar')}> */}
-                            <Button
+                        <TouchableOpacity onPressOut={() => navigation.pop()}>
+                            <Button1
                                 source={require("../../../public/images/List/left-arrow.png")}
                             />
-                        {/* </TouchableOpacity> */}
+                        </TouchableOpacity>
                         <HeaderTitle>11/1의 두게더</HeaderTitle>
                         <Button2 source={require("../../../public/images/List/pencil.png")}/>
-                        <Button source={require("../../../public/images/List/delete.png")}/>
+                        <Button1 source={require("../../../public/images/List/delete.png")}/>
                     </Header>
                     <Body>
                         <BodyTop>
                             <BodyTitle>간식 차려먹기</BodyTitle>
-                            <BodyContent>콘푸라이트 한그릇 맛있게 먹기</BodyContent>
+                            <BodyContent>콘푸라이트 두그릇 맛있게 먹기</BodyContent>
                         </BodyTop>
                         <BodyMiddel>
                             <ScrollView horizontal={true}>
@@ -66,16 +61,10 @@ export default function Detail(){
                         <BodyBottom></BodyBottom>
                     </Body>
                 </SafeAreaTop>
-                <Footer>
-                    <InnerFooter> 
-                        <InputBar 
-                            placeholder="댓글을 입력하세요"
-                            placeholderTextColor={"#888888"}
-                        />
-                        <SendIcon source={require("../../../public/images/List/send.png")}/>
-                    </InnerFooter>
-                </Footer>
+                <MemoWrite/>
             </SafeArea>
         </>
     )
 }
+
+export default Detail;
