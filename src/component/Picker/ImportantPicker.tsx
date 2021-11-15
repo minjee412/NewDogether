@@ -14,8 +14,7 @@ padding-top: 5px;
 /* border-left-width: 0.2; */
 `
 
-export default function ImportantPicker({value}){
-  const [important, setImportant] = useState();
+export default function ImportantPicker(props){
 
   return(
 
@@ -25,9 +24,9 @@ export default function ImportantPicker({value}){
       </View>
     <Container>
       <Picker
-        selectedValue={important}
-        onValueChange={(itemValue) =>
-          setImportant(itemValue)
+        selectedValue={props.important}
+        onValueChange={(value) =>
+          props.setImportant(value)
         }
         // dropdownIconColor='blue'
         mode='dialog'

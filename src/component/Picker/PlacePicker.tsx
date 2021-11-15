@@ -21,8 +21,9 @@ padding-top: 5px;
 /* border-right-width: 0.2; */
 `
 
-export default function PlacePicker({value}){
-  const [place , setPlace] = useState();
+export default function PlacePicker(props){
+
+  // console.log({place});
 
   return(
     <Wrapper>
@@ -31,9 +32,9 @@ export default function PlacePicker({value}){
       </View>
     <Container>
       <Picker
-        selectedValue={place}
-        onValueChange={(itemValue) =>
-          setPlace(itemValue)
+        selectedValue={props.place}
+        onValueChange={(value) =>
+          props.setPlace(value)
         }
         // dropdownIconColor='blue'
         mode='dialog'
