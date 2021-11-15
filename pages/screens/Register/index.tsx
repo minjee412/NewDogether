@@ -4,6 +4,10 @@ import styled from '@emotion/native';
 import PlacePicker from '../../../src/component/Picker/PlacePicker';
 import ImportantPicker from '../../../src/component/Picker/ImportantPicker';
 import DatePick from '../../../src/component/Picker/DatePicker';
+import firestore from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth'
+import {v4} from 'uuid'
+
 
 
 const Wrapper = styled(SafeAreaView)`
@@ -53,23 +57,41 @@ const Input = styled(TextInput)`
     margin-bottom: 10px;
 `
 
-export default function Register() {
+export default function Register({title,contents,place,important,id}) {
+    const user = auth().currentUser;
+
+    const [todo,setTodo] = useState('');
+    const [details, setDetails] = useState('')
+
+    function Submit (){
+        firestore()
+            .collection('Users')
+            .doc(user.email)
+            .collection("Todo")
+            .add({
+                title:{todo},
+                contents:{details},
+                place:{place},
+                id:{v4},
+                important:{important}
+            })
+    }
 
 	return (
         <Wrapper>
             <Title_Wrapper>
             <Title>두게더 할 일 추가하기</Title>
-            <Button_Wrapper>
-                <Button_Text>완료</Button_Text>
+            <Button_Wrapper onPressOut={Submit}>
+                <Button_Text onPress={Submit}>완료</Button_Text>
             </Button_Wrapper>
             </Title_Wrapper>
             <Card_Wrapper >
-                <Input placeholder='할 일을 입력 해주세요. (50자 내외)' maxLength={50}></Input>
-                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' maxLength={100}></Input>
+                <Input placeholder='할 일을 입력 해주세요. (50자 내외)' maxLength={50} value={todo} onChangeText={setTodo}></Input>
+                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' maxLength={100} value={details} onChangeText={setDetails}></Input>
                 
             <View style={{flexDirection:'row'}}>
-                <PlacePicker/>
-                <ImportantPicker/>
+                <PlacePicker value={place}/>
+                <ImportantPicker value={important}/>
             </View>
             <DatePick />
             </Card_Wrapper>

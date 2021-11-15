@@ -5,6 +5,7 @@ import Auth from "@react-native-firebase/auth"
 import { createStackNavigator } from "@react-navigation/stack"
 import TabNavigator from './pages/navigation/TabNavigator';
 import 'react-native-gesture-handler'
+import 'react-native-get-random-values'
 
 interface IContext {
   user: any;

@@ -4,7 +4,7 @@ import DatePicker from 'react-native-date-picker'
 
 
 
-export default () => {
+export default (props) => {
   const [date, setDate] = useState(new Date())
   const [open, setOpen] = useState(false)
 

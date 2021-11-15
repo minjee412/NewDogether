@@ -14,8 +14,8 @@ padding-top: 5px;
 /* border-left-width: 0.2; */
 `
 
-export default function ImportantPicker(){
-  const [selectedLanguage, setSelectedLanguage] = useState();
+export default function ImportantPicker({value}){
+  const [important, setImportant] = useState();
 
   return(
 
@@ -25,9 +25,9 @@ export default function ImportantPicker(){
       </View>
     <Container>
       <Picker
-        selectedValue={selectedLanguage}
+        selectedValue={important}
         onValueChange={(itemValue) =>
-          setSelectedLanguage(itemValue)
+          setImportant(itemValue)
         }
         // dropdownIconColor='blue'
         mode='dialog'
