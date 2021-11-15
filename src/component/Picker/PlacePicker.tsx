@@ -21,8 +21,8 @@ padding-top: 5px;
 /* border-right-width: 0.2; */
 `
 
-export default function PlacePicker(){
-  const [selectedLanguage, setSelectedLanguage] = useState();
+export default function PlacePicker({value}){
+  const [place , setPlace] = useState();
 
   return(
     <Wrapper>
@@ -31,9 +31,9 @@ export default function PlacePicker(){
       </View>
     <Container>
       <Picker
-        selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedLanguage(itemValue)
+        selectedValue={place}
+        onValueChange={(itemValue) =>
+          setPlace(itemValue)
         }
         // dropdownIconColor='blue'
         mode='dialog'
