@@ -1,53 +1,47 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import LoginPage from './pages/screens/LoginScreen';
-import MainListNavigation from './pages/navigation/MainListNavigation';
-import MyPage from './pages/navigation/MypageNavigation';
+import LoginPage from './pages/screens/LoginPage'
+import Auth from "@react-native-firebase/auth"
+import { createStackNavigator } from "@react-navigation/stack"
+import TabNavigator from './pages/navigation/TabNavigator';
+import 'react-native-gesture-handler'
 
-// detail page import
-import Detail from "./pages/screens/Detail/index"
+interface IContext {
+  user: any;
+  setUser: (_: any) => void;
+}
+export const AuthContext = React.createContext<IContext>({
+  user: {},
+  setUser: (_: any ) => {},
+})
+const App = () => {  
+  const Stack = createStackNavigator()
+  const [ user, setUser] =React.useState({})
+  const [ initializing, setInitialzing] =React.useState(true);
 
-const Tab = createBottomTabNavigator()
+  const onAuthStateChanged = (googleCredential) => {
+    setUser(googleCredential);
+    if (initializing) setInitialzing(false);
+  };
 
-export default function App() {  
-
+  React.useEffect (() => {
+    const subscriber = Auth().onAuthStateChanged(onAuthStateChanged)
+    return subscriber
+  }, [])
+  
   return(
-    <NavigationContainer>
-      <Tab.Navigator initialRouteName="LoginPage" screenOptions={{tabBarActiveTintColor:'red', tabBarActiveBackgroundColor:'beige', tabBarHideOnKeyboard:true}} >
-        <Tab.Screen name="LoginPage" 
-          component={LoginPage}
-          options={{headerShown:false, tabBarIcon:() => (<Ionicons
-                    name="log-in-outline"
-                    size={20}
-          />
-          )
-          }}
-        />
-        <Tab.Screen name="MainList" 
-          component={MainListNavigation} 
-          options={{headerShown:false, tabBarIcon:()=>(<Ionicons 
-                    name="list-outline"
-                    size={20}/>
-          )}} 
-        />
-        <Tab.Screen name="MyPage" 
-          component={MyPage} 
-          options={{tabBarIcon:()=>(<Ionicons
-            name="apps-outline"
-            size={20}/>
-
-          )}}
-        />
-        <Tab.Screen name="Detail" 
-          component={Detail} 
-          options={{headerShown:false, tabBarIcon:()=>(<Ionicons 
-                    name="list-outline"
-                    size={20}/>
-          )}} 
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <AuthContext.Provider value={{user, setUser}}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false}}>
+          {user ? (
+            <Stack.Screen name="tabNavigator" component={TabNavigator} />
+          ) : (
+            <Stack.Screen name="LoginPage" component={LoginPage} />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   ) 
 }
+
+export default App;
