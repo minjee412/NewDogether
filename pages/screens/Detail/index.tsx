@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useEffect, useState } from "react"
 import {
     SafeArea,
     SafeAreaTop,
@@ -14,8 +14,12 @@ import {
     BodyContent,
     BodyText,
 } from "./Detail.styles"
-import {ScrollView, TouchableOpacity} from "react-native"
+import {ScrollView, TouchableOpacity, FlatList} from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
+import { getPosts } from "../../../src/commons/library/posts"
+
 // import MemoList from "../../../src/component/memo/memoList"
 
 function Detail({navigation}){
@@ -25,6 +29,12 @@ function Detail({navigation}){
         {aaa: "🏠  집", bbb: "🗓  2021.11.23", ccc: "👥  홍길동, 둘리", ddd: "🔴  우선순위 1"},
     ]
 
+    // const user = auth().currentUser;
+    const [posts, setPosts] = useState(null);
+
+    useEffect(() => {
+        getPosts().then(setPosts);
+    }, []);
 
 
     return(
@@ -43,7 +53,7 @@ function Detail({navigation}){
                     </Header>
                     <Body>
                         <BodyTop>
-                            <BodyTitle>간식 차려먹기</BodyTitle>
+                            <BodyTitle>{posts?.email}타이틀</BodyTitle>
                             <BodyContent>콘푸라이트 두그릇 맛있게 먹기</BodyContent>
                         </BodyTop>
                         <BodyMiddel>

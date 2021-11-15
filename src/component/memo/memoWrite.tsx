@@ -1,20 +1,18 @@
 import React, {useState} from "react";
 import styled from "@emotion/native"
-import { View, Image, TextInput, } from "react-native"
+import { View, Image, TextInput } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 import {v4} from 'uuid'
 import 'react-native-get-random-values'
-import {useUserContext} from "../../../contexts/UserContext"
+// import {useUserContext} from "../../../contexts/UserContext"
 
 function MemoWrite(){
 
     const [content, setContent] = useState("")
-
-    console.log(content)
-
-    const {user} = useUserContext;
+    
+    // const { user } = useUserContext();
     const ID = v4();
     
     // const Submit = () => {

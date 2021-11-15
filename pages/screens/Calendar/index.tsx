@@ -1,10 +1,12 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React, { useContext } from 'react'
+import CalendarView from "../../../src/component/Calendar/CalendarView"
+import LogContext from "../../../contexts/LogContext"
 
-export default function Calendar({navigation}){
+export default function CalendarScreen({navigation}){
+
+
     return(
-        <View>
-            <Text>달력페이지 입니다.</Text>
-        </View>
+        <CalendarView />
     )
-}
+};
+
