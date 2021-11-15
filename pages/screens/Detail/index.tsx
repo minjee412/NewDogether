@@ -44,7 +44,7 @@ function Detail({navigation}){
                     <Body>
                         <BodyTop>
                             <BodyTitle>간식 차려먹기</BodyTitle>
-                            <BodyContent>콘푸라이트 한그릇 맛있게 먹기</BodyContent>
+                            <BodyContent>콘푸라이트 두그릇 맛있게 먹기</BodyContent>
                         </BodyTop>
                         <BodyMiddel>
                             <ScrollView horizontal={true}>
