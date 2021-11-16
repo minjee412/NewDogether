@@ -44,17 +44,21 @@ function Detail({navigation}, props){
             })
     }, [])
 
+
     console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
     // console.log("props: ", props.item.title)
 
+    
 
     return(
         <>
             <SafeArea>
                 <SafeAreaTop>
                         <Header>
+
                             <TouchableOpacity onPressOut={() => navigation.pop()}>
                                 <Button
+
                                     source={require("../../../public/images/List/left-arrow.png")}
                                 />
                             </TouchableOpacity>
