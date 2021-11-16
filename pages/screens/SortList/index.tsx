@@ -3,11 +3,12 @@ import styled from '@emotion/native';
 import { Image, SafeAreaView, Text, View } from 'react-native';
 
 export default function SortList(props:any){
+    console.log("color: ",props)
     return(
         <Wrapper style={{flex:1}}>
-            <Check_Box source={(props.important === '4' ? require ('../../../public/images/List/bluecircle.png') : props.important === '2' ? require('../../../public/images/List/yellowcircle.png') : props.important === '3' ? require ('../../../public/images/List/greencircle.png') : require('../../../public/images/List/redcircle.png'))}/>
+            <Check_Box source={(props.important === '🔵 (4순위)' ? require ('../../../public/images/List/bluecircle.png') : props.important === '🟠 (2순위)' ? require('../../../public/images/List/yellowcircle.png') : props.important === '🟢 (3순위)' ? require ('../../../public/images/List/greencircle.png') : require('../../../public/images/List/redcircle.png'))}/>
             <List>{props.title.length > 14 ? props.title.slice(0, 14) : props.title}</List>
-            <Check_Hamburger source={(props.important === '4' ? require ('../../../public/images/List/bluehamburger.png') : props.important === '2' ? require('../../../public/images/List/yellowhambergur.png') : props.important === '3' ? require ('../../../public/images/List/greenhambergur.png') : require('../../../public/images/List/redhamburger.png'))}/>
+            <Check_Hamburger source={(props.important === '🔵 (4순위)' ? require ('../../../public/images/List/bluehamburger.png') : props.important === '🟠 (2순위)' ? require('../../../public/images/List/yellowhambergur.png') : props.important === '🟢 (3순위)' ? require ('../../../public/images/List/greenhambergur.png') : require('../../../public/images/List/redhamburger.png'))}/>
         </Wrapper>
     )
 }
