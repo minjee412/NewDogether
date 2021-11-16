@@ -30,7 +30,7 @@ export default function MainList({navigation}){
   
   const user = auth().currentUser
   // const array = [];
-  const postCollection = firestore().collection('Users').doc(user?.email).collection('Todo').orderBy('date','desc')
+  const postCollection = firestore().collection('Users').doc(user?.email).collection('Todo').orderBy('important','desc')
 // console.log(firestore().collection('Users').doc(user.email).collection('Todo').get())
   
 
