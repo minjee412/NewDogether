@@ -22,7 +22,7 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
 
-function Detail({navigation}, props){
+function Detail({navigation, route}, ){
 
     const user = auth().currentUser;
     const aaa = [];
@@ -48,7 +48,7 @@ function Detail({navigation}, props){
     console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
     // console.log("props: ", props.item.title)
 
-    
+    console.log("aaa", route.params)
 
     return(
         <>
@@ -65,15 +65,13 @@ function Detail({navigation}, props){
                             <HeaderTitle>오늘의 할 일</HeaderTitle>
                             <Button source={require("../../../public/images/List/delete.png")}/>
                         </Header>
-                        {detailV.map((el:any, i: number) => (
-                            <Body key={i}>
                                 <BodyTop>
-                                    {el.title ? <BodyTitle>{el?.title}</BodyTitle> : <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty> }
-                                    {el.contents ? <BodyContent>{el?.contents}</BodyContent> : <BodyContentEmpty>내용이 없습니다</BodyContentEmpty> }
+                                    {route.params.title ? <BodyTitle>{route.params?.title}</BodyTitle> : <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty> }
+                                    {route.params.contents ? <BodyContent>{route.params?.contents}</BodyContent> : <BodyContentEmpty>내용이 없습니다</BodyContentEmpty> }
                                 </BodyTop>
                                 <BodyMiddel>
-                                    {el.place ? <BodyText>{el.place}</BodyText> : <NullWrapper/> }
-                                    {el.important ? <BodyText>{el.important}</BodyText> : <NullWrapper/> }
+                                    {route.params.place ? <BodyText>{route.params.place}</BodyText> : <NullWrapper/> }
+                                    {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> }
                                     {/* <ScrollView horizontal={true} key={i}>
                                         {detailV.filter((el) => el !== "").map((el, i:number) => (
                                             <Wrapper key={i}>
@@ -85,8 +83,6 @@ function Detail({navigation}, props){
                                     </ScrollView> */}
                                 </BodyMiddel>
                                 <BodyBottom></BodyBottom>
-                            </Body>
-                        ))}
                 </SafeAreaTop>
                 <MemoWrite/>
             </SafeArea>
