@@ -91,7 +91,8 @@ export default function Register(props:any) {
                 place:place,
                 id:ID,
                 important:important,
-                date:date
+                createdAt:firestore.FieldValue.serverTimestamp()
+                // date:date
             })
             alert('등록되었습니다.');
             console.log(result);
@@ -118,7 +119,6 @@ export default function Register(props:any) {
                 <PlacePicker value={place} setPlace={setPlace} place={place}/>
                 <ImportantPicker value={important} setImportant={setImportant} important={important}/>
             </View>
-            <DatePick date={date} setDate={setDate} />
             </Card_Wrapper>
         </Wrapper>
 	);

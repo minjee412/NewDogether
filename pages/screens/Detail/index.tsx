@@ -23,7 +23,7 @@ import { getPosts } from "../../../src/commons/library/posts"
 
 // import MemoList from "../../../src/component/memo/memoList"
 
-function Detail({navigation}){
+function Detail(props: any){
 
     // // dummy data
     // const Aaa = [
@@ -73,16 +73,17 @@ function Detail({navigation}){
             })
     }, [])
     // [firestore().collection("Users").doc("").collection("Todo").get()]
-    console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
+    // console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
 
 
+    
 
     return(
         <>
             <SafeArea>
                 <SafeAreaTop>
                         <Header>
-                            <TouchableOpacity onPressOut={() => navigation.pop()}>
+                            <TouchableOpacity onPressOut={() => props.navigation.pop()}>
                                 <Button1
                                     source={require("../../../public/images/List/left-arrow.png")}
                                 />
