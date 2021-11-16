@@ -1,8 +1,8 @@
 import * as React from 'react';
-import MyPagePage from '../screens/Mypage/Mypage.container'
-import { Text, View } from 'react-native';
+import MyPage from '../screens/Mypage/index'
 
-export default function MyPage(){
 
-    return <MyPagePage />
+export default function MyPageNavigation(){
+
+    return <MyPage />
 }
