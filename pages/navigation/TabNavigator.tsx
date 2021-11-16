@@ -4,6 +4,7 @@ import MainListNavigation from './MainListNavigation'
 import MyPageNavigation from './MypageNavigation'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { Image } from "react-native"
+import MovieNavigation from './MovieNavigation'
 
 
 
@@ -30,6 +31,17 @@ export default function TabNavigator () {
                         <Image
                             style={{width:size, height:size }}
                             source={require('../../public/images/List/user.png')}
+                        />
+                    )
+                }}}
+            />
+            <Tab.Screen name="Movies"
+                component={MovieNavigation} 
+                options={{headerShown:false,tabBarIcon:({size})=> {
+                    return (
+                        <Image
+                            style={{width:size, height:size }}
+                            source={require('../../public/images/MovieIcon/movieImg.png')}
                         />
                     )
                 }}}
