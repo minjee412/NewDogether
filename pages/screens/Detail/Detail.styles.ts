@@ -78,3 +78,4 @@ export const BodyText = styled(Text)`
 export const BodyBottom = styled(View)`
 
 `
+export const  Wrapper =styled(View)``
