@@ -3,57 +3,30 @@ import {
     SafeArea,
     SafeAreaTop,
     Header,
-    Button1,
-    Button2,
+    Button,
     HeaderTitle,
     Body,
     BodyTop,
     BodyMiddel,
     BodyBottom,
     BodyTitle,
+    BodyTitleEmpty,
     BodyContent,
+    BodyContentEmpty,
     BodyText,
-    Wrapper,
+    NullWrapper,
 } from "./Detail.styles"
-import {ScrollView, TouchableOpacity, FlatList} from "react-native"
+import { TouchableOpacity } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-import { getPosts } from "../../../src/commons/library/posts"
 
-// import MemoList from "../../../src/component/memo/memoList"
 
-function Detail({navigation}){
-
-    // // dummy data
-    // const Aaa = [
-    //     {bbb: "🏠  집", bbb: "🗓  2021.11.23", ccc: "👥  홍길동, 둘리", ddd: "🔴  우선순위 1"},
-    // ]
-
-    // const [post, setPost] = useState(null);
-
-    // const user = auth().currentUser;
-    // const WriteCollection = firestore().collection('Users').doc(user.email).collection('Todo')
-    // // console.log("데이터: ", firestore().collection('Users').doc(user.email).collection('Todo').get())
-    
-    // async function getPosts(){
-    //     const snapshot = await WriteCollection.get();
-    //     const posts = snapshot.docs.map((doc) => ({
-    //       id: doc.id,
-    //       ...doc.data(),
-    //     }));
-    //     return posts;
-    //   }
-
-    //   React.useEffect(()=> {
-    //     getPosts().then(setPost)
-    //  },[])    
-
+function Detail({navigation}, props){
 
     const user = auth().currentUser;
     const aaa = [];
     const [ detailV, setDetailV ] = React.useState([])
-    const [ opt, setOpt ] = React.useState([]);
 
     React.useEffect(() => {
         const doc = firestore()
@@ -66,15 +39,13 @@ function Detail({navigation}){
                 snapshot.forEach(doc => {
                     aaa.push(doc.data())
                 });
-                setDetailV(aaa.reverse())
-                setOpt(aaa.reverse())
-              
+                setDetailV(aaa.reverse())             
                 //reverse 쓰는 이유 찾아놓기
             })
     }, [])
-    // [firestore().collection("Users").doc("").collection("Todo").get()]
-    console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
 
+    console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
+    // console.log("props: ", props.item.title)
 
 
     return(
@@ -83,30 +54,31 @@ function Detail({navigation}){
                 <SafeAreaTop>
                         <Header>
                             <TouchableOpacity onPressOut={() => navigation.pop()}>
-                                <Button1
+                                <Button
                                     source={require("../../../public/images/List/left-arrow.png")}
                                 />
                             </TouchableOpacity>
-                            <HeaderTitle>date</HeaderTitle>
-                            <Button2 source={require("../../../public/images/List/pencil.png")}/>
-                            <Button1 source={require("../../../public/images/List/delete.png")}/>
+                            <HeaderTitle>오늘의 할 일</HeaderTitle>
+                            <Button source={require("../../../public/images/List/delete.png")}/>
                         </Header>
                         {detailV.map((el:any, i: number) => (
                             <Body key={i}>
                                 <BodyTop>
-                                    <BodyTitle>{el?.title}</BodyTitle>
-                                    <BodyContent>{el?.contents}</BodyContent>
+                                    {el.title ? <BodyTitle>{el?.title}</BodyTitle> : <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty> }
+                                    {el.contents ? <BodyContent>{el?.contents}</BodyContent> : <BodyContentEmpty>내용이 없습니다</BodyContentEmpty> }
                                 </BodyTop>
                                 <BodyMiddel>
-                                    <ScrollView horizontal={true}>
-                                        {opt.filter((el) => el !== "").map((el, j:number) => (
-                                            <Wrapper key={j}>
+                                    {el.place ? <BodyText>{el.place}</BodyText> : <NullWrapper/> }
+                                    {el.important ? <BodyText>{el.important}</BodyText> : <NullWrapper/> }
+                                    {/* <ScrollView horizontal={true} key={i}>
+                                        {detailV.filter((el) => el !== "").map((el, i:number) => (
+                                            <Wrapper key={i}>
                                                 <BodyText>{el.place}</BodyText>
                                                 <BodyText>{el.important}</BodyText>
-                                                {/* <BodyText>{el.date}</BodyText> */}
+                                                <BodyText>{el.date}</BodyText>
                                             </Wrapper>
                                         ))}
-                                    </ScrollView>
+                                    </ScrollView> */}
                                 </BodyMiddel>
                                 <BodyBottom></BodyBottom>
                             </Body>

@@ -16,22 +16,16 @@ export const Header = styled(View)`
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     elevation: 4;
 `
-export const Button1 = styled(Image)`
+export const Button = styled(Image)`
     width: 20px;
     height: 20px;
-`
-export const Button2 = styled(Image)`
-    width: 20px;
-    height: 20px;
-    margin-right: 20px;
 `
 export const HeaderTitle = styled(Text)`
     width: 160px;
-    margin-left: 56px;
-    margin-right: 15px;
     text-align: center;
     /* font-family: ; */
     font-size: 16px;
@@ -50,10 +44,22 @@ export const BodyTitle = styled(Text)`
     font-weight : 700;
     color: #000000;
 `
+export const BodyTitleEmpty = styled(Text)`
+    /* font-family: ; */
+    font-size: 16px;
+    font-weight : 700;
+    color: #c4c4c4;
+`
 export const BodyContent = styled(Text)`
     /* font-family: ; */
     font-size: 15px;
     color: #888888;
+    margin-top: 19px;
+`
+export const BodyContentEmpty = styled(Text)`
+    /* font-family: ; */
+    font-size: 15px;
+    color: #c4c4c4;
     margin-top: 19px;
 `
 export const BodyMiddel = styled(View)`
@@ -78,4 +84,4 @@ export const BodyText = styled(Text)`
 export const BodyBottom = styled(View)`
 
 `
-export const  Wrapper =styled(View)``
+export const  NullWrapper =styled(View)``

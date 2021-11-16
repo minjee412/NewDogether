@@ -12,20 +12,31 @@ function MemoWrite(){
 
     const [content, setContent] = useState("")
     
-    // const { user } = useUserContext();
     const ID = v4();
     
-    // const Submit = () => {
-    //     firestore()
+    // React.useEffect(() => {
+    //     const doc = firestore()
     //         .collection("Users")
     //         .doc(user.email)
     //         .collection("Todo")
-    //         .doc(id)
-    // }
+    //         // .orderBy("data", "asc")
+    //         .get()
+    //         .then(snapshot => {
+    //             snapshot.forEach(doc => {
+    //                 aaa.push(doc.data())
+    //             });
+    //             setDetailV(aaa.reverse())             
+    //             //reverse 쓰는 이유 찾아놓기
+    //         })
+    // }, [])
+
 
     // 댓글 등록
+    const user = auth().currentUser;
     const Submit = () => {            
         firestore()
+            .collection("Users")
+            .doc(user.email)
             .collection("Memo")
             .add({
                 content: content,
