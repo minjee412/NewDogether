@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from '@emotion/native';
-import { Image, SafeAreaView, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
-export default function SortList(props){
+export default function SortList(props:any){
     return(
-        <Wrapper style={{flex:1}}>
+        <Wrapper style={{flex:1}} >
             <Check_Box source={(props.important === '4' ? require ('../../../public/images/List/bluecircle.png') : props.important === '2' ? require('../../../public/images/List/yellowcircle.png') : props.important === '3' ? require ('../../../public/images/List/greencircle.png') : require('../../../public/images/List/redcircle.png'))}/>
             <List>{props.title.length > 14 ? props.title.slice(0, 14) : props.title}</List>
             {/* <Text>asd;lfkjasl;dfkjasd;lfkjadsl;fkdasjfl;ksd</Text> */}
@@ -14,7 +14,7 @@ export default function SortList(props){
     )
 }
 
-const Wrapper = styled(SafeAreaView)`
+const Wrapper = styled(View)`
     width: 311px;
     height: 44px;
     border-radius: 1px;
@@ -27,6 +27,7 @@ const Wrapper = styled(SafeAreaView)`
     margin-bottom: 10px;
     padding-left: 10px;
     justify-content: space-between;
+    /* border: 1px solid black; */
 `
 
 const Check_Box = styled(Image)`

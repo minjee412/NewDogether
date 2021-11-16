@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { SafeAreaView, Text,TextInput,TouchableOpacity,View } from 'react-native';
 import styled from '@emotion/native';
 import PlacePicker from '../../../src/component/Picker/PlacePicker';
@@ -59,7 +59,7 @@ const Input = styled(TextInput)`
     margin-bottom: 10px;
 `
 
-export default function Register(props) {
+export default function Register(props:any) {
     const user = auth().currentUser;
 
     const [todo,setTodo] = useState('');
@@ -68,9 +68,10 @@ export default function Register(props) {
     const [important, setImportant] = useState('');
     const [date, setDate] = useState(new Date())
 
-
     const ID = v4();
     // console.log(v4());
+
+    const TodoRef = useRef();
 
     console.log(place);
     console.log(important);
@@ -110,8 +111,8 @@ export default function Register(props) {
             </Button_Wrapper>
             </Title_Wrapper>
             <Card_Wrapper >
-                <Input placeholder='할 일을 입력 해주세요. (50자 내외)' maxLength={50} value={todo} onChangeText={setTodo}></Input>
-                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' maxLength={100} value={details} onChangeText={setDetails}></Input>
+                <Input placeholder='할 일을 입력 해주세요. (50자 내외)' maxLength={50} value={todo} onChangeText={setTodo} onSubmitEditing={()=>{TodoRef.current.focus()}}></Input>
+                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' maxLength={100} value={details} onChangeText={setDetails} ref={TodoRef}></Input>
                 
             <View style={{flexDirection:'row'}}>
                 <PlacePicker value={place} setPlace={setPlace} place={place}/>

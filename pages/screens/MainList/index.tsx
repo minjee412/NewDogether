@@ -64,7 +64,7 @@ export default function MainList({navigation}){
   // }
   const user = auth().currentUser
   // const array = [];
-  const postCollection = firestore().collection('Users').doc(user.email).collection('Todo').orderBy('important','desc')
+  const postCollection = firestore().collection('Users').doc(user?.email).collection('Todo').orderBy('important','desc')
 // console.log(firestore().collection('Users').doc(user.email).collection('Todo').get())
   
 
@@ -100,7 +100,9 @@ export default function MainList({navigation}){
   console.log({post})
 
   const renderItem = ({item}) =>(
-    <SortList important={item.important} title={item.title} id={item.id} user = {item.user}/>
+    <TouchableOpacity onPressOut={()=>navigation.navigate('Detail',item)}>
+      <SortList important={item.important} title={item.title} id={item.id} user = {item.user}/>
+    </TouchableOpacity>
   )
   
   
@@ -134,11 +136,10 @@ export default function MainList({navigation}){
             onSubmitEditing={AddTask}            
         />
       </Input_Wrapper> */}
-      <FlatList
+      <FlatList 
         data={post}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        
       />
         {/* {Object.values(tasks)[0]
         ?
