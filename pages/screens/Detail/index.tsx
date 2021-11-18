@@ -20,7 +20,7 @@ import {
     InputBar,
     SendIcon,
 } from "./Detail.styles"
-import { TouchableOpacity } from "react-native"
+import { TouchableOpacity, Alert } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -28,7 +28,7 @@ import {v4} from 'uuid'
 
 
 
-function Detail({navigation, route, props}, ){
+function Detail({navigation, route}, ){
     console.log("aaa", route)
     const [content, setContent] = useState("")
     const ID = v4();
@@ -36,78 +36,42 @@ function Detail({navigation, route, props}, ){
     console.log("디테일페이지 프롭스: ",route)
 
     const user = auth().currentUser;
-    const aaa = [];
-    const [ detailV, setDetailV ] = React.useState([])
+    // const aaa = [];
+    // const [ detailV, setDetailV ] = React.useState([])
 
-    // React.useEffect(() => {
-    //     const doc = firestore()
-    //         .collection("Users")
-    //         .doc(user.email)
-    //         .collection("Todo")
-    //         // .orderBy("data", "asc")
-    //         .get()
-    //         .then(snapshot => {
-    //             snapshot.forEach(doc => {
-    //                 aaa.push(doc.data())
-    //             });
-    //             setDetailV(aaa.reverse())             
-    //             //reverse 쓰는 이유 찾아놓기
-    //         })
-    // }, [])
-
-    // console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
-    // console.log("props: ", props.item.title)
-    // console.log("aaa", route.params)
-
-
-
-        // 글 삭제
-    const Submit = async () => {
+    // 글 삭제
+    const Submit = () => {
         try {
-            const result = await firestore()
-                .collection("Users")
-                .doc(user.email)
-                .collection("Todo")
-                .doc("74XKZB9reJJePNpNjbYL")
-                .delete()
-                alert("삭제완료")                
+                Alert.alert(
+                    "삭제",
+                    "정말로 삭제하시겠어요?",
+                    [
+                        {text: "취소", style: "cancel"},
+                        {
+                            text: "삭제",
+                            onPress: () => {
+                                firestore()
+                                    .collection("Users")
+                                    .doc(user.email)
+                                    .collection("Todo")
+                                    .doc(route.params.id)
+                                    .delete()
+                                    navigation.navigate('MainList')
+                            },
+                            style: "destructive"
+                        }
+                    ],
+                    {
+                        cancelable: true
+                    }
+                )
+                
         } catch (error) {
             console.log(error)
-            alert("삭제실패")
+            // alert("삭제실패")
         }
     }
 
-
-    //     // 글 삭제
-    // const Submit = async () => {
-    //     try {
-    //         const result = await firestore()
-    //             .collection("Users")
-    //             .doc(user.email)
-    //             .collection("Todo")
-    //             .doc(id)
-    //             .delete()
-    //             alert("삭제완료")                
-    //     } catch (error) {
-    //         console.log(error)
-    //         alert("삭제실패")
-    //     }
-    // }
-
-    // // 메모 등록
-    // const Submit = () => {            
-    //     firestore()
-    //         .collection('Users')
-    //         .doc(user.email)
-    //         .collection("Todo")
-    //         .doc(route.params.id)
-    //         .collection("4")
-    //         .add({
-    //             content,
-    //             ID,
-    //             createdAt: new Date
-    //         })
-    // }
 
 
     return(
