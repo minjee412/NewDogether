@@ -26,7 +26,6 @@ import firestore from '@react-native-firebase/firestore'
 function Detail({navigation, route}){
     console.log("aaa", route)
     const [memoContent, setMemoContent] = useState("")
-    const ID = v4();
 
     console.log("디테일페이지 프롭스: ",route)
 
