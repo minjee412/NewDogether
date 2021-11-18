@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import LoginPage from './pages/screens/LoginPage'
 import Auth from "@react-native-firebase/auth"
 import { createStackNavigator } from "@react-navigation/stack"
 import TabNavigator from './pages/navigation/TabNavigator';
 import 'react-native-gesture-handler'
 import 'react-native-get-random-values'
+
 
 interface IContext {
   user: any;
@@ -19,6 +20,8 @@ const App = () => {
   const Stack = createStackNavigator()
   const [ user, setUser] =React.useState({})
   const [ initializing, setInitialzing] =React.useState(true);
+  
+
 
   const onAuthStateChanged = (googleCredential) => {
     setUser(googleCredential);
@@ -30,6 +33,8 @@ const App = () => {
     return subscriber
   }, [])
   
+
+
   return(
     <AuthContext.Provider value={{user, setUser}}>
       <NavigationContainer>
