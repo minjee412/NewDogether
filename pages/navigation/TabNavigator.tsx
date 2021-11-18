@@ -17,17 +17,15 @@ export default function TabNavigator () {
     
 
     return (
+
         <Tab.Navigator initialRouteName="MainList" screenOptions={{
                 tabBarActiveTintColor: isDark ? "#ffbe0b" : '#518099',
                 tabBarInactiveTintColor: isDark ? "gray" : "gray" ,
-                tabBarLabelPosition:'below-icon', 
-                tabBarStyle:{ backgroundColor: isDark ? "black" : "white"},
-                tabBarLabelStyle:{
-                    fontSize:12,
-                    fontWeight:'500',
-                    marginTop:-5
-                }
+                
+                tabBarStyle:{ backgroundColor: isDark ? "black" : "white"},             
+                tabBarShowLabel:false
         }} >
+
 
             <Tab.Screen name="MainList" 
                 component={MainListNavigation}

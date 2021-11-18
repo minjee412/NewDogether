@@ -15,18 +15,29 @@ import {
     BodyContentEmpty,
     BodyText,
     NullWrapper,
+    Footer,
+    InnerFooter,
+    InputBar,
+    SendIcon,
 } from "./Detail.styles"
 import { TouchableOpacity } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
-// import auth from '@react-native-firebase/auth'
-// import firestore from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
+import {v4} from 'uuid'
 
 
-function Detail({navigation, route}, ){
 
-    // const user = auth().currentUser;
-    // const aaa = [];
-    // const [ detailV, setDetailV ] = React.useState([])
+function Detail({navigation, route, props}, ){
+
+    const [content, setContent] = useState("")
+    const ID = v4();
+
+    console.log("디테일페이지 프롭스: ",route)
+
+    const user = auth().currentUser;
+    const aaa = [];
+    const [ detailV, setDetailV ] = React.useState([])
 
     // React.useEffect(() => {
     //     const doc = firestore()
@@ -48,6 +59,57 @@ function Detail({navigation, route}, ){
     // console.log("props: ", props.item.title)
     // console.log("aaa", route.params)
 
+
+
+        // 글 삭제
+    const Submit = async () => {
+        try {
+            const result = await firestore()
+                .collection("Users")
+                .doc(user.email)
+                .collection("Todo")
+                .doc("74XKZB9reJJePNpNjbYL")
+                .delete()
+                alert("삭제완료")                
+        } catch (error) {
+            console.log(error)
+            alert("삭제실패")
+        }
+    }
+
+
+    //     // 글 삭제
+    // const Submit = async () => {
+    //     try {
+    //         const result = await firestore()
+    //             .collection("Users")
+    //             .doc(user.email)
+    //             .collection("Todo")
+    //             .doc(id)
+    //             .delete()
+    //             alert("삭제완료")                
+    //     } catch (error) {
+    //         console.log(error)
+    //         alert("삭제실패")
+    //     }
+    // }
+
+    // // 메모 등록
+    // const Submit = () => {            
+    //     firestore()
+    //         .collection('Users')
+    //         .doc(user.email)
+    //         .collection("Todo")
+    //         .doc(route.params.id)
+    //         .collection("4")
+    //         .add({
+    //             content,
+    //             ID,
+    //             createdAt: new Date
+    //         })
+    // }
+
+
     return(
         <>
             <SafeArea>
@@ -59,7 +121,9 @@ function Detail({navigation, route}, ){
                                 />
                             </TouchableOpacity>
                             <HeaderTitle>오늘의 할 일</HeaderTitle>
-                            <Button source={require("../../../public/images/List/delete.png")}/>
+                            <TouchableOpacity onPressOut={Submit}>
+                                <Button source={require("../../../public/images/List/delete.png")}/>
+                            </TouchableOpacity>
                         </Header>
                                 <BodyTop>
                                     {route.params.title ? <BodyTitle>{route.params?.title}</BodyTitle> : <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty> }
@@ -69,9 +133,25 @@ function Detail({navigation, route}, ){
                                     {route.params.place ? <BodyText>{route.params.place}</BodyText> : <NullWrapper/> }
                                     {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> } 
                                 </BodyMiddel>
-                                <BodyBottom></BodyBottom>
+                                <BodyBottom>
+                                    {/* <Memo>{route.params.id}</Memo> */}
+                                </BodyBottom>
                 </SafeAreaTop>
-                <MemoWrite/>
+                {/* <MemoWrite /> */}
+                <Footer>
+                    <InnerFooter> 
+                        <InputBar 
+                            placeholder="댓글을 입력하세요"
+                            placeholderTextColor={"#888888"}
+                            maxLength={100}
+                            value={content}
+                            onChangeText={setContent}
+                        />
+                        {/* <TouchableOpacity onPressOut={MemoSubmit}>
+                            <SendIcon source={require("../../../public/images/List/send.png")}/>
+                        </TouchableOpacity> */}
+                    </InnerFooter>
+                </Footer>
             </SafeArea>
         </>
     )

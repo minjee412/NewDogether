@@ -6,7 +6,7 @@ import firestore from '@react-native-firebase/firestore'
 export default function CalendarView({navigation}){
     
     const user = auth().currentUser;
-    const aaa = [];
+    const aaa = {};
     const [ detailV, setDetailV ] = React.useState([])
 
     React.useEffect(() => {
