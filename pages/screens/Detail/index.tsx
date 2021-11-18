@@ -15,16 +15,11 @@ import {
     BodyContentEmpty,
     BodyText,
     NullWrapper,
-    Footer,
-    InnerFooter,
-    InputBar,
-    SendIcon,
 } from "./Detail.styles"
 import { TouchableOpacity, Alert } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-import {v4} from 'uuid'
 
 
 
@@ -139,10 +134,9 @@ function Detail({navigation, route}){
                                     {route.params.place ? <BodyText>{route.params.place}</BodyText> : <NullWrapper/> }
                                     {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> } 
                                 </BodyMiddel>
-                                <BodyBottom>
-                                    {/* <Memo>{route.params.id}</Memo> */}
-                                </BodyBottom>
+                                <BodyBottom></BodyBottom>
                 </SafeAreaTop>
+
                 {/* <MemoWrite /> */}
                 <Footer>
                     <InnerFooter> 
@@ -158,6 +152,7 @@ function Detail({navigation, route}){
                         </TouchableOpacity>
                     </InnerFooter>
                 </Footer>
+
             </SafeArea>
         </>
     )

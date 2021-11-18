@@ -47,7 +47,7 @@ export default function TabNavigator () {
 
             <Tab.Screen name="MyPage"
                 component={MyPageNavigation} 
-                options={{tabBarIcon:({focused, color, size})=> {
+                options={{headerShown:false, tabBarIcon:({focused, color, size})=> {
                     return (
                         <FontAwesome name={focused ?'user' : 'user-o'} color={color} size={size} />
                     )

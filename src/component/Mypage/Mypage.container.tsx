@@ -1,48 +1,39 @@
 import * as React from 'react'
-import { SafeAreaView,Text, View, Button, Image} from 'react-native'
-import auth from '@react-native-firebase/auth'
-import styled from '@emotion/native';
-import firestore from '@react-native-firebase/firestore'
+import UserInformation from '../../../pages/screens/UserInformation'
+import NickNamePage from '../../../pages/screens/NickName'
 import {
     SafeArea,
-    Photo,
+    SafeAreaTop,
+    Header,
+    // Button,
+    HeaderTitle,
+    // Photo,
+    NickName_Wrapper,
     
 } from "./Mypage.styles"
+// import { TouchableOpacity} from 'react-native'
 
-export default function MyPagePage (){
-    const user = auth().currentUser;
-    // function writeToDo () {
-    //     firestore()
-    //         .collection('Users')
-    //         .doc(user.email)
-    //         .collection("TestTodo")
-    //         .add({
-    //             title: '9시기상',
-    //             contents: '양치하기',
-    //             id: "115618080895428113971",
-    //         })
-    //         .then((res) =>  {
-    //             console.log(res)
-    //             console.log('ToDo added!');
-    //         }).catch(error=> console.log(error))
-    // }
-    return (
+
+function MyPagePage ({navigation},){
+    
+    return(
         <>   
             <SafeArea>   
-                <View>
-                    <Text>{user?.displayName}</Text>
-                    <Text>{user?.email}</Text>
-                    <Photo 
-                        source={{
-                        uri: user?.photoURL,
-                        }}/>
-                    <View>
-                        <Button title="logout" onPress={() => auth().signOut()}/>
-                    </View>
-                    
-                </View>
+                <SafeAreaTop>
+                    <Header>
+                        {/* <TouchableOpacity onPressOut={() => navigation.pop()}>
+                            <Button
+                                source={require("../../../public/images/List/left-arrow.png")}
+                            />
+                        </TouchableOpacity> */}
+                        <HeaderTitle>마이페이지</HeaderTitle> 
+                    </Header>
+                </SafeAreaTop>
+                <UserInformation/>
+                {/* <NickNamePage/> */}
             </SafeArea> 
         </> 
     )
 }
 
+export default MyPagePage;

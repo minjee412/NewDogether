@@ -26,7 +26,7 @@ export default function LoginPage() {
     console.log(userInfo.idToken);
     AsyncStorage.setItem('accessToken', userInfo.idToken)
     const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
-    firestore().collection("Users").add(userInfo.user)
+    firestore().collection("Users").get(userInfo.user)
     return auth().signInWithCredential(googleCredential);
   }
 
