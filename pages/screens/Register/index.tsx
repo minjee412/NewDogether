@@ -81,7 +81,7 @@ export default function Register(props:any) {
     async function Submit (){
         const offset = new Date().getTimezoneOffset()*60000;
         const today = new Date(Date.now() - offset)
-        const writeDay = today.toISOString()
+        const createdAt = today.toISOString()
 
         try{const result = await firestore()
             .collection('Users')
@@ -93,7 +93,7 @@ export default function Register(props:any) {
                 place:place,
                 ID,
                 important:important,
-                createdAt: writeDay,
+                createdAt
             })
             alert('등록되었습니다.');
             console.log(result);

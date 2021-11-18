@@ -16,51 +16,100 @@ import {
     BodyText,
     NullWrapper,
 } from "./Detail.styles"
-import { TouchableOpacity } from "react-native"
+import { TouchableOpacity, Alert } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
 
-function Detail({navigation, route}, ){
+
+function Detail({navigation, route}){
+    console.log("aaa", route)
+    const [memoContent, setMemoContent] = useState("")
+    const ID = v4();
+
+    console.log("디테일페이지 프롭스: ",route)
 
     const user = auth().currentUser;
-    const aaa = [];
-    const [ detailV, setDetailV ] = React.useState([])
+    // const aaa = [];
+    // const [ detailV, setDetailV ] = React.useState([])
 
-    const Submit = async () => {
+    // 글 삭제
+    const deleteView = () => {
         try {
-            const result = await firestore()
-                .collection("Users")
-                .doc(user.uid)
-                .collection("Todo")
-                .doc(ID )  // <=========== 해당 괄호 안에 들어갈 값.. 구할 수가 없어요..!
-                .delete()
-                alert("삭제완료")                
+                Alert.alert(
+                    "삭제",
+                    "정말로 삭제하시겠어요?",
+                    [
+                        {text: "취소", style: "cancel"},
+                        {
+                            text: "삭제",
+                            onPress: () => {
+                                firestore()
+                                    .collection("Users")
+                                    .doc(user.email)
+                                    .collection("Todo")
+                                    .doc(route.params.id)
+                                    .delete()
+                                    navigation.navigate('MainList')
+                            },
+                            style: "destructive"
+                        }
+                    ],
+                    {
+                        cancelable: true
+                    }
+                )
         } catch (error) {
             console.log(error)
-            alert("삭제실패")
+            // alert("삭제실패")
         }
     }
-    // React.useEffect(() => {
-    //     const doc = firestore()
-    //         .collection("Users")
-    //         .doc(user.email)
-    //         .collection("Todo")
-    //         // .orderBy("data", "asc")
-    //         .get()
-    //         .then(snapshot => {
-    //             snapshot.forEach(doc => {
-    //                 aaa.push(doc.data())
-    //             });
-    //             setDetailV(aaa.reverse())             
-    //             //reverse 쓰는 이유 찾아놓기
-    //         })
-    // }, [])
 
-    // console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
-    // console.log("props: ", props.item.title)
-    // console.log("aaa", route.params)
+    // 댓글 등록
+    const MemoSubmit = async () => {
+        const offset = new Date().getTimezoneOffset()*60000;
+        const today = new Date(Date.now() - offset)
+        const createdAt = today.toISOString()
+
+        try {
+            const reuslt = await firestore()
+                .collection("Users")
+                .doc(user.email)
+                .collection("Todo")
+                .doc(route.params.id)
+                .collection("Memo")
+                .add({
+                    memoContent,
+                    createdAt
+                })
+                alert("등록되었습니다.")
+                setMemoContent("")
+        } catch(error) {
+            console.log(error)
+        }
+    }
+    // // 댓글 등록
+    // const MemoSubmit = async () => {
+    //     const offset = new Date().getTimezoneOffset()*60000;
+    //     const today = new Date(Date.now() - offset)
+    //     const createdAt = today.toISOString()
+
+    //     try {
+    //         const reuslt = await firestore()
+    //             .collection("Memo")
+    //             .doc(route.params.id)
+    //             .collection("MemoList")
+    //             .add({
+    //                 memoContent,
+    //                 createdAt
+    //             })
+    //             alert("등록되었습니다.")
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+    // }
+    
 
     return(
         <>
@@ -73,7 +122,7 @@ function Detail({navigation, route}, ){
                                 />
                             </TouchableOpacity>
                             <HeaderTitle>오늘의 할 일</HeaderTitle>
-                            <TouchableOpacity onPressOut={Submit}>
+                            <TouchableOpacity onPressOut={deleteView}>
                                 <Button source={require("../../../public/images/List/delete.png")}/>
                             </TouchableOpacity>
                         </Header>
@@ -87,7 +136,23 @@ function Detail({navigation, route}, ){
                                 </BodyMiddel>
                                 <BodyBottom></BodyBottom>
                 </SafeAreaTop>
-                <MemoWrite/>
+
+                {/* <MemoWrite /> */}
+                <Footer>
+                    <InnerFooter> 
+                        <InputBar 
+                            placeholder="댓글을 입력하세요"
+                            placeholderTextColor={"#888888"}
+                            maxLength={100}
+                            value={memoContent}
+                            onChangeText={setMemoContent}
+                        />
+                        <TouchableOpacity onPressOut={MemoSubmit}>
+                            <SendIcon source={require("../../../public/images/List/send.png")}/>
+                        </TouchableOpacity>
+                    </InnerFooter>
+                </Footer>
+
             </SafeArea>
         </>
     )

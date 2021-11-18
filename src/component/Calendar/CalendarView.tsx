@@ -4,47 +4,55 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
 
-export default function CalendarView({navigation, markedDates, selecteDate, onSelectDate}:any){
+export default function CalendarView(){
     
-    // const user = auth().currentUser;
-    // const aaa = {};
-    // const [ detailV, setDetailV ] = React.useState([])
+    const user = auth().currentUser;
+    const Arr = [];
+    const [ detailV, setDetailV ] = React.useState([])
 
-    // React.useEffect(() => {
-    //     const doc = firestore()
-    //         .collection("Users")
-    //         .doc(user.email)
-    //         .collection("Todo")
-    //         // .orderBy("data", "asc")
-    //         .get()
-    //         .then(snapshot => {
-    //             snapshot.forEach(doc => {
-    //                 aaa.push(doc.data())
-    //             });
-    //             setDetailV(aaa.reverse())             
-    //             //reverse 쓰는 이유 찾아놓기
-    //         })
-    // }, [])
+    React.useEffect(() => {
+        const doc = firestore()
+            .collection("Users")
+            .doc(user.email)
+            .collection("Todo")
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    Arr.push(doc.data())
+                });
+                setDetailV(Arr.reverse())             
+            })
+    }, [])
 
     // console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
-    // console.log("props: ", props.item.title)
-    // console.log("aaa", route.params)
+    console.log("파이어베이스 데이터", detailV)
 
+    const dateArr = []
+    detailV.forEach(el=>{
+        dateArr.push(el.createdAt.slice(0,10))
+    })
+    
+    // const abc = dateArr.map((el)=>{
+    //     // console.log("el: ",el)
+    //     el
+    // })
 
-    const markedSelectedDate = {
-        "2021-11-17" : {
-            marked: true,
-        },
-        "2021-11-19" : {
-            marked: true,
-        },
+    console.log("날짜Arr: ", dateArr)
+    // const markedSelectedDate = {Object.assign({}, detailV),}
+    // console.log("props: ", markedSelectedDate)
+    const markedDates={
+        // abc : {
+        //     marked: true,
+        // }
         "2021-11-20" : {
-            marked: true,
-        },
+            marked: true
+        }
     }
+    console.log("markedDates: ", markedDates)
+    
 
-    // const markedSelectedDate = {
-    //     ...markedDates,
+    // const markedDates = {
+    //     ...detailV,
     //     [selecteDate]: {
     //         selected: true,
     //         marked: markedDates[selecteDate]?.markedDates
@@ -55,7 +63,7 @@ export default function CalendarView({navigation, markedDates, selecteDate, onSe
 
     return(
         <Calendar
-            markedDates={markedSelectedDate}
+            markedDates={markedDates}
             // onDayPress={(day) => {
             //     onSelectDate(day.dateString);
             // }}

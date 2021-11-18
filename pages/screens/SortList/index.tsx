@@ -3,7 +3,7 @@ import styled from '@emotion/native';
 import { Image, SafeAreaView, Text, View } from 'react-native';
 
 export default function SortList(props:any){
-    console.log("color: ",props)
+    // console.log("color: ",props)
     return(
         <Wrapper style={{flex:1}}>
             <Check_Box source={(props.important === '🔵 (4순위)' ? require ('../../../public/images/List/bluecircle.png') : props.important === '🟠 (2순위)' ? require('../../../public/images/List/yellowcircle.png') : props.important === '🟢 (3순위)' ? require ('../../../public/images/List/greencircle.png') : require('../../../public/images/List/redcircle.png'))}/>
