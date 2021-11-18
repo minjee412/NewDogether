@@ -4,10 +4,10 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
 
-export default function CalendarView({navigation, selecteDate, onSelectDate}:any){
+export default function CalendarView(){
     
     const user = auth().currentUser;
-    const aaa = [];
+    const Arr = [];
     const [ detailV, setDetailV ] = React.useState([])
 
     React.useEffect(() => {
@@ -15,41 +15,40 @@ export default function CalendarView({navigation, selecteDate, onSelectDate}:any
             .collection("Users")
             .doc(user.email)
             .collection("Todo")
-            // .orderBy("data", "asc")
             .get()
             .then(snapshot => {
                 snapshot.forEach(doc => {
-                    aaa.push(doc.data())
+                    Arr.push(doc.data())
                 });
-                setDetailV(aaa)             
-                //reverse 쓰는 이유 찾아놓기
+                setDetailV(Arr.reverse())             
             })
     }, [])
 
     // console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
+    console.log("파이어베이스 데이터", detailV)
 
-    // console.log("파이어베이스 데이터", detailV)
-    const dateArr:string[] = []
+    const dateArr = []
     detailV.forEach(el=>{
         dateArr.push(el.createdAt.slice(0,10))
     })
-    console.log("dateArr: ",dateArr)
     
-    const a = dateArr.map((el:string)=>{
-            return {el : {
-                marked:true
-            }
-        }
-    })
+    // const abc = dateArr.map((el)=>{
+    //     // console.log("el: ",el)
+    //     el
+    // })
 
-    console.log("dateArr: ", dateArr)
+    console.log("날짜Arr: ", dateArr)
     // const markedSelectedDate = {Object.assign({}, detailV),}
     // console.log("props: ", markedSelectedDate)
     const markedDates={
-        dateArr : {
+        // abc : {
+        //     marked: true,
+        // }
+        "2021-11-20" : {
             marked: true
         }
     }
+    console.log("markedDates: ", markedDates)
     
 
     // const markedDates = {

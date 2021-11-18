@@ -1,20 +1,3 @@
-// import React, { useEffect, useRef, } from "react";
-// import { StyleSheet, View } from "react-native";
-// import { useRoute } from "@react-navigation/native"
-
-
-// const UploadScreen = () => {
-//     return <View style={styles.block} />
-// }
-
-// const styles = StyleSheet.create({
-//     block: {}
-// })
-
-// export default UploadScreen
-
-
-
 import React, {useState} from "react";
 import styled from "@emotion/native"
 import { View, Image, TextInput } from "react-native"
@@ -28,26 +11,8 @@ import 'react-native-get-random-values'
 function MemoWrite(){
 
     const [content, setContent] = useState("")
-    
     const ID = v4();
     
-    // React.useEffect(() => {
-    //     const doc = firestore()
-    //         .collection("Users")
-    //         .doc(user.email)
-    //         .collection("Todo")
-    //         // .orderBy("data", "asc")
-    //         .get()
-    //         .then(snapshot => {
-    //             snapshot.forEach(doc => {
-    //                 aaa.push(doc.data())
-    //             });
-    //             setDetailV(aaa.reverse())             
-    //             //reverse 쓰는 이유 찾아놓기
-    //         })
-    // }, [])
-
-
     // 댓글 등록
     const user = auth().currentUser;
     const Submit = () => {            
@@ -55,7 +20,7 @@ function MemoWrite(){
             .collection('Users')
             .doc(user.email)
             .collection("Todo")
-            .add({
+            .set({
                 content: content,
                 id:ID,
                 createdAt: firestore.FieldValue.serverTimestamp(),
