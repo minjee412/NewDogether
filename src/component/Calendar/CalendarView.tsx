@@ -3,51 +3,62 @@ import { Calendar, CalendarList } from 'react-native-calendars'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-export default function CalendarView({navigation}){
+
+export default function CalendarView({navigation, markedDates, selecteDate, onSelectDate}:any){
     
-    const user = auth().currentUser;
-    const aaa = {};
-    const [ detailV, setDetailV ] = React.useState([])
+    // const user = auth().currentUser;
+    // const aaa = {};
+    // const [ detailV, setDetailV ] = React.useState([])
 
-    React.useEffect(() => {
-        const doc = firestore()
-            .collection("Users")
-            .doc(user.email)
-            .collection("Todo")
-            // .orderBy("data", "asc")
-            .get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                    aaa.push(doc.data())
-                });
-                setDetailV(aaa.reverse())             
-                //reverse 쓰는 이유 찾아놓기
-            })
-    }, [])
+    // React.useEffect(() => {
+    //     const doc = firestore()
+    //         .collection("Users")
+    //         .doc(user.email)
+    //         .collection("Todo")
+    //         // .orderBy("data", "asc")
+    //         .get()
+    //         .then(snapshot => {
+    //             snapshot.forEach(doc => {
+    //                 aaa.push(doc.data())
+    //             });
+    //             setDetailV(aaa.reverse())             
+    //             //reverse 쓰는 이유 찾아놓기
+    //         })
+    // }, [])
 
-    console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
+    // console.log("가나다", firestore().collection("Users").doc("").collection("Todo").get())
     // console.log("props: ", props.item.title)
     // console.log("aaa", route.params)
 
 
-    // const aaaaaaaaa = {
-    //     "2021-11-17" : {
-    //         marked: true,
-    //     },
-    //     "2021-11-19" : {
-    //         marked: true,
-    //     },
-    //     "2021-11-20" : {
-    //         marked: true,
-    //     },
-    // }
+    const markedSelectedDate = {
+        "2021-11-17" : {
+            marked: true,
+        },
+        "2021-11-19" : {
+            marked: true,
+        },
+        "2021-11-20" : {
+            marked: true,
+        },
+    }
 
+    // const markedSelectedDate = {
+    //     ...markedDates,
+    //     [selecteDate]: {
+    //         selected: true,
+    //         marked: markedDates[selecteDate]?.markedDates
+    //     },
+    // };
 
 
 
     return(
         <Calendar
-            markedDates={detailV}
+            markedDates={markedSelectedDate}
+            // onDayPress={(day) => {
+            //     onSelectDate(day.dateString);
+            // }}
             theme={{
                 selectedDayBackgroundColor: "#518099",
                 textSectionTitleColor: '#518099',
@@ -60,8 +71,3 @@ export default function CalendarView({navigation}){
         />
     )
 };
-
-// const WrapperCalendar = styled(Calendar)`
-//     margin-top: 50px;
-
-// `

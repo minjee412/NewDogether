@@ -29,7 +29,7 @@ import {v4} from 'uuid'
 
 
 function Detail({navigation, route, props}, ){
-
+    console.log("aaa", route)
     const [content, setContent] = useState("")
     const ID = v4();
 
