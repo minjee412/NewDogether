@@ -20,7 +20,7 @@ function MemoWrite(){
             .collection('Users')
             .doc(user.email)
             .collection("Todo")
-            .set({
+            .add({
                 content: content,
                 id:ID,
                 createdAt: firestore.FieldValue.serverTimestamp(),
