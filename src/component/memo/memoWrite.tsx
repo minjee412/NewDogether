@@ -1,3 +1,20 @@
+// import React, { useEffect, useRef, } from "react";
+// import { StyleSheet, View } from "react-native";
+// import { useRoute } from "@react-navigation/native"
+
+
+// const UploadScreen = () => {
+//     return <View style={styles.block} />
+// }
+
+// const styles = StyleSheet.create({
+//     block: {}
+// })
+
+// export default UploadScreen
+
+
+
 import React, {useState} from "react";
 import styled from "@emotion/native"
 import { View, Image, TextInput } from "react-native"
@@ -35,9 +52,9 @@ function MemoWrite(){
     const user = auth().currentUser;
     const Submit = () => {            
         firestore()
-            .collection("Users")
+            .collection('Users')
             .doc(user.email)
-            .collection("Memo")
+            .collection("Todo")
             .add({
                 content: content,
                 id:ID,

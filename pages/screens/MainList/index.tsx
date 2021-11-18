@@ -60,7 +60,7 @@ export default function MainList({navigation}){
 
    React.useEffect(()=> {
      getPosts().then(setPost)
-  },[])
+  },[getPosts()])
 
 
   const renderItem = ({item}) =>(

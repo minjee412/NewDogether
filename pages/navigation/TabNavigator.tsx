@@ -12,7 +12,7 @@ export default function TabNavigator () {
     const Tab = createBottomTabNavigator()
 
     return (
-        <Tab.Navigator initialRouteName="MainList" screenOptions={{tabBarActiveTintColor:'#518099'}} >
+        <Tab.Navigator initialRouteName="MainList" screenOptions={{tabBarActiveTintColor:'#518099', tabBarShowLabel:false}} >
             <Tab.Screen name="MainList" 
                 component={MainListNavigation}
                 options={{headerShown:false, tabBarIcon:({size})=> {
