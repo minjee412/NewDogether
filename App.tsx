@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import LoginPage from './pages/screens/LoginPage'
 import Auth from "@react-native-firebase/auth"
 import { createStackNavigator } from "@react-navigation/stack"

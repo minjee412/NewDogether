@@ -87,6 +87,7 @@ export default function Movies(){
             <Container>
                 <Search_Input
                     placeholder='검색어를 입력 해주세요.'
+                    placeholderTextColor='white'
                     returnKeyType='search'
                     onChangeText={onChangeText}
                     onSubmitEditing={onSubmit}
@@ -126,7 +127,7 @@ export default function Movies(){
                             {movie.original_title.slice(0,13)}
                             {movie.original_title.length > 13 ? '...' : null}
                         </Name>
-                        <Votes style={{color:'black'}}>
+                        <Votes style={{color:'white'}}>
                         {movie.vote_average > 0 ? `⭐️ ${movie.vote_average}/10` : `🌱 Coming soon`}
                         </Votes>
                     </Movie>
@@ -138,7 +139,7 @@ export default function Movies(){
                 {upcomingData.results.map((movie) => <HMovie key={movie.id}>
                     <Poster  source={{uri: makeImgPath(movie.poster_path)}}/>
                     <HColumn>
-                    <Name style={{fontSize:16, fontWeight:'600', fontStyle:'italic', color:'black'}}>
+                    <Name style={{fontSize:16, fontWeight:'600', fontStyle:'italic', color:'white'}}>
                         {movie.original_title}
                     </Name>
                     <Release>{new Date(movie.release_date).toLocaleDateString("ko")} (개봉 예정)</Release>

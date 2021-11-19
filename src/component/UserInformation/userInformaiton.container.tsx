@@ -29,15 +29,13 @@ export default function UserInformationPage () {
                             />
                     </LeftInfo>
                     <RightInfo>
-                        <Text>이름: {user?.displayName}</Text>  
-                        <Text>이메일: {user?.email}</Text>  
-                        
-                        <TouchableOpacity onPressOut={() => auth().signOut()}>
-                            <Button>로그아웃</Button> 
-                        </TouchableOpacity>
-                            
+                        <Text style={{color:'black'}}>이름:   {user?.displayName}</Text>  
+                        <Text style={{color:'black'}}>이메일:   {user?.email}</Text>                             
                     </RightInfo>
                 </InfoWrapper>
+                <TouchableOpacity onPressOut={() => auth().signOut()} style={{borderColor:'red', borderWidth:1, alignItems:'center', backgroundColor:'lightpink'}}>
+                            <Button style={{color:'red', fontWeight:'600'}}>로그아웃</Button> 
+                        </TouchableOpacity>
             </SafeArea>
         </>
     )

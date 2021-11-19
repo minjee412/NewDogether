@@ -4,6 +4,9 @@ import { SafeAreaView, View, Text, TextInput } from 'react-native'
 export const SafeArea = styled(SafeAreaView)`
     flex:1;
     /* background-color: skyblue; */
+    background-color: #222222;
+    padding-top: 5px;
+    border-radius: 10px;
 `
 
 export const NickName_Wrapper = styled(View)`
@@ -21,6 +24,7 @@ export const NickName_Title = styled(Text)`
     font-size: 16px;
     margin-left: 22px;
     font-weight: bold;
+    color: white;
 `
 
 export const ChangeNickName = styled(View)`

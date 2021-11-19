@@ -8,6 +8,9 @@ export const SafeArea = styled(SafeAreaView)`
     /* background-color: #FFFFFF; */
     display: flex;
     flex-direction: column;
+    background-color: #222222;
+    padding: 10px 10px;
+    border-radius: 10px;
 `
 export const Photo_Title = styled(Text)`
     flex:0.2;
@@ -15,12 +18,14 @@ export const Photo_Title = styled(Text)`
     font-size: 16px;
     margin-left: 22px;
     font-weight: bold;
+    color: white;
 `
 export const InfoWrapper = styled(View)`
     flex:0.8;
     display:flex;
     flex-direction: row;
     padding-top:8px;
+    margin-bottom: 10px;
 `
 export const LeftInfo = styled(View)`
     flex:0.2;

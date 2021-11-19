@@ -8,9 +8,11 @@ const Container = styled(View)`
 `
 
 const Wrapper = styled(View)`
-elevation:2;
-width: 173px;
+width: 100%;
 padding-top: 5px;
+border: 1px solid white;
+border-radius: 10px;
+margin-top: 10px;
 /* border-left-width: 0.2; */
 `
 
@@ -20,7 +22,7 @@ export default function ImportantPicker(props){
 
     <Wrapper>
       <View style={{alignItems:'center'}}>
-        <Text style={{color:'black'}}> 우선순위 </Text>
+        <Text style={{color:'white'}}> 우선 순위 </Text>
       </View>
     <Container>
       <Picker
@@ -30,7 +32,8 @@ export default function ImportantPicker(props){
         }
         // dropdownIconColor='blue'
         mode='dialog'
-        style={{borderWidth:1, borderStyle:'solid'}}
+        style={{borderWidth:1, borderStyle:'solid', color:'white'}}
+        dropdownIconColor='white'
         >
         <Picker.Item label='🔴 (1순위)' value='🔴 (1순위)' />
         <Picker.Item label='🟠 (2순위)' value='🟠 (2순위)' />

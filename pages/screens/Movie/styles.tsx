@@ -5,10 +5,12 @@ import { Text, View, Image } from 'react-native';
 
 export const Container = styled(ScrollView)`
     /* border: 1px solid black; */
+    background-color: #0d0d0d;
 `;
 
 export const ViewStyle = styled(View)`
     flex: 1;
+    
 `;
 
 export const Loader = styled(View)`
@@ -51,7 +53,7 @@ export const Column = styled(View)`
 `
 
 export const Overview = styled(Text)`
-    color : black;
+    color : white;
     margin-top: 10px;
     width: 80%;
 `
@@ -59,7 +61,7 @@ export const Overview = styled(Text)`
 export const Votes = styled(Overview)``
 
 export const ListTitle = styled.Text`
-    color: black;
+    color: white;
     font-weight: 600;
     margin-left: 20px;
     font-size: 18px;
@@ -75,6 +77,7 @@ export const TrendingScroll = styled.ScrollView`
 `
 
 export const Name = styled(Text)`
+    color: white;
 `
 
 export const ListContainer = styled.View`
@@ -95,7 +98,7 @@ export const HColumn = styled.View`
 
 export const Release = styled.Text`
     font-size: 12px;
-    color: blue;
+    color: lightgray;
     font-weight: 500;
 `
 
@@ -109,4 +112,5 @@ export const Search_Input = styled.TextInput`
     padding: 0px 15px;
     margin-bottom: 5px;
     margin-top: 5px;
+    color: white;
 `
