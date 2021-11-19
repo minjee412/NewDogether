@@ -11,9 +11,10 @@ export const SafeArea = styled(SafeAreaView)`
 `
 export const LeftInfo = styled(View)`
     flex:0.3;
-    /* background-color: blue; */
+    background-color: blue;
     display: flex;
     flex-direction: column;
+
 `
 
 export const Photo_Title = styled(Text)`
