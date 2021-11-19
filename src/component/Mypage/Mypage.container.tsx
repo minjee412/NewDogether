@@ -1,17 +1,17 @@
 import * as React from 'react'
 import UserInformation from '../../../pages/screens/UserInformation'
-import NickNamePage from '../../../pages/screens/NickName'
+import NickName from '../../../pages/screens/NickName'
 import {
     SafeArea,
     SafeAreaTop,
-    Header,
-    // Button,
+    Button,
     HeaderTitle,
     // Photo,
-    NickName_Wrapper,
+    UserInformationWrapper,
+    NickNameWrapper,
     
 } from "./Mypage.styles"
-// import { TouchableOpacity} from 'react-native'
+import { TouchableOpacity} from 'react-native'
 
 
 function MyPagePage ({navigation},){
@@ -20,17 +20,20 @@ function MyPagePage ({navigation},){
         <>   
             <SafeArea>   
                 <SafeAreaTop>
-                    <Header>
-                        {/* <TouchableOpacity onPressOut={() => navigation.pop()}>
-                            <Button
-                                source={require("../../../public/images/List/left-arrow.png")}
-                            />
-                        </TouchableOpacity> */}
-                        <HeaderTitle>마이페이지</HeaderTitle> 
-                    </Header>
+                    <TouchableOpacity onPressOut={() => navigation.pop()}>
+                        <Button
+                            source={require("../../../public/images/List/left-arrow.png")}
+                        />
+                    </TouchableOpacity>
+                    <HeaderTitle>마이페이지</HeaderTitle> 
+                   
                 </SafeAreaTop>
-                <UserInformation/>
-                {/* <NickNamePage/> */}
+                <UserInformationWrapper>
+                    <UserInformation/>
+                </UserInformationWrapper>
+                <NickNameWrapper>      
+                    <NickName/>
+                </NickNameWrapper> 
             </SafeArea> 
         </> 
     )

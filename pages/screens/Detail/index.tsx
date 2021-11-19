@@ -137,7 +137,7 @@ function Detail({navigation, route}){
                 </SafeAreaTop>
 
                 {/* <MemoWrite /> */}
-                <Footer>
+                {/* <Footer>
                     <InnerFooter> 
                         <InputBar 
                             placeholder="댓글을 입력하세요"
@@ -150,7 +150,7 @@ function Detail({navigation, route}){
                             <SendIcon source={require("../../../public/images/List/send.png")}/>
                         </TouchableOpacity>
                     </InnerFooter>
-                </Footer>
+                </Footer> */}
 
             </SafeArea>
         </>

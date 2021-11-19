@@ -6,19 +6,15 @@ import {Image, SafeAreaView, View, Text} from 'react-native'
 export const SafeArea = styled(SafeAreaView)`
     flex: 1;
     background-color: #FFFFFF;
-`
-
-export const Infor_Wrapper = styled(View)`
-    flex:1;
     display: flex;
     flex-direction: row;
-    elevation: 4;
 `
 export const LeftInfo = styled(View)`
     flex:0.3;
-    /* background-color: blue; */
+    background-color: blue;
     display: flex;
     flex-direction: column;
+
 `
 
 export const Photo_Title = styled(Text)`
@@ -41,7 +37,7 @@ export const RightInfo = styled(View)`
     flex: 0.7;
     /* background-color: yellow; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 `
 
 export const Button = styled(Text)`
