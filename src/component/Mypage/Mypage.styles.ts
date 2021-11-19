@@ -6,48 +6,34 @@ import {Image, SafeAreaView, View, Text} from 'react-native'
 
 export const SafeArea = styled(SafeAreaView)`
     flex: 1;
-    /* background-color: #E5E5E5; */
     background-color: #F6F6F6;
-    
 `
 export const SafeAreaTop = styled(View)`
-    flex:0.15;
-    /* background-color:yellow; */
+    flex:0.15;    
     display: flex;
     flex-direction: row;
-    
 `
-
-
 export const Button = styled(Image)`
     width: 20px;
     height: 20px;
 `
-
 export const HeaderTitle = styled(Text)`
     display:flex;
-    
     text-align: center;
-    /* font-family: ; */
     font-size: 20px;
     font-weight : 700;
     color: #000000;
 `
 export const UserInformationWrapper = styled(View)`
     flex: 0.2;
-    
-    
-    /* background-color: blue; */
 `
 
 export const NickNameWrapper = styled(View)`
     flex: 0.15;
-    /* background-color:red; */
     margin-top: 20px;
 `
 
 export const MyFriendListWrapper = styled(View)`
     flex: 0.4;
-    /* background-color:blue; */
     margin-top: 20px;
 `
