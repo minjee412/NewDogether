@@ -15,6 +15,12 @@ import {
     BodyContentEmpty,
     BodyText,
     NullWrapper,
+    MemoListWrapper,
+    MemoListLeft,
+    MemoContent,
+    MemoCreatedAt,
+    MemoDeleteButton,
+    Aaa
 } from "./Detail.styles"
 import { TouchableOpacity, Alert } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
@@ -24,14 +30,10 @@ import firestore from '@react-native-firebase/firestore'
 
 
 function Detail({navigation, route}){
-    console.log("aaa", route)
-    const [memoContent, setMemoContent] = useState("")
-
-    console.log("디테일페이지 프롭스: ",route)
+    const dayDate = `${route.params.createdAt.slice(5,7)}` + "월 " + `${route.params.createdAt.slice(8,10)}` + "일의 할 일"
+    // const dayTime = `${route.params.createdAt.slice(11,13)}` + "시 " + `${route.params.createdAt.slice(14,16)}` + "분 작성"
 
     const user = auth().currentUser;
-    // const aaa = [];
-    // const [ detailV, setDetailV ] = React.useState([])
 
     // 글 삭제
     const deleteView = () => {
@@ -60,98 +62,75 @@ function Detail({navigation, route}){
                     }
                 )
         } catch (error) {
-            console.log(error)
+            console.log("error: ",error)
             // alert("삭제실패")
         }
     }
 
-    // 댓글 등록
-    const MemoSubmit = async () => {
-        const offset = new Date().getTimezoneOffset()*60000;
-        const today = new Date(Date.now() - offset)
-        const createdAt = today.toISOString()
-
-        try {
-            const reuslt = await firestore()
-                .collection("Users")
-                .doc(user.email)
-                .collection("Todo")
-                .doc(route.params.id)
-                .collection("Memo")
-                .add({
-                    memoContent,
-                    createdAt
-                })
-                alert("등록되었습니다.")
-                setMemoContent("")
-        } catch(error) {
-            console.log(error)
-        }
-    }
-    // // 댓글 등록
-    // const MemoSubmit = async () => {
-    //     const offset = new Date().getTimezoneOffset()*60000;
-    //     const today = new Date(Date.now() - offset)
-    //     const createdAt = today.toISOString()
-
-    //     try {
-    //         const reuslt = await firestore()
-    //             .collection("Memo")
-    //             .doc(route.params.id)
-    //             .collection("MemoList")
-    //             .add({
-    //                 memoContent,
-    //                 createdAt
-    //             })
-    //             alert("등록되었습니다.")
-    //     } catch(error) {
-    //         console.log(error)
-    //     }
-    // }
+    // 댓글 내용 조회
+    const MemoData = [];
+    const [ memoDT, setMemoDT ] = useState([])
+    React.useEffect(() => {
+        const doc = firestore()
+            .collection("Users")
+            .doc(user.email)
+            .collection("Todo")
+            .doc(route.params.id)
+            .collection("Memo")
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    MemoData.push(doc.data())
+                });
+                setMemoDT(MemoData.reverse())
+                
+            })
+    },[])
+    console.log("memoDt: ", memoDT)
+    // [firestore().collection("Users").doc(user.email).collection("Todo").get()]
     
+    console.log(memoDT.filter((el) => el !== "").map((el) => { console.log("el: ",  el.createdAt, el.memoContent)}))
 
     return(
         <>
             <SafeArea>
                 <SafeAreaTop>
-                        <Header>
-                            <TouchableOpacity onPressOut={() => navigation.pop()}>
-                                <Button
-                                    source={require("../../../public/images/List/left-arrow.png")}
-                                />
-                            </TouchableOpacity>
-                            <HeaderTitle>오늘의 할 일</HeaderTitle>
-                            <TouchableOpacity onPressOut={deleteView}>
-                                <Button source={require("../../../public/images/List/delete.png")}/>
-                            </TouchableOpacity>
-                        </Header>
-                                <BodyTop>
-                                    {route.params.title ? <BodyTitle>{route.params?.title}</BodyTitle> : <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty> }
-                                    {route.params.contents ? <BodyContent>{route.params?.contents}</BodyContent> : <BodyContentEmpty>내용이 없습니다</BodyContentEmpty> }
-                                </BodyTop>
-                                <BodyMiddel>
-                                    {route.params.place ? <BodyText>{route.params.place}</BodyText> : <NullWrapper/> }
-                                    {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> } 
-                                </BodyMiddel>
-                                <BodyBottom></BodyBottom>
-                </SafeAreaTop>
-
-                {/* <MemoWrite /> */}
-                {/* <Footer>
-                    <InnerFooter> 
-                        <InputBar 
-                            placeholder="댓글을 입력하세요"
-                            placeholderTextColor={"#888888"}
-                            maxLength={100}
-                            value={memoContent}
-                            onChangeText={setMemoContent}
-                        />
-                        <TouchableOpacity onPressOut={MemoSubmit}>
-                            <SendIcon source={require("../../../public/images/List/send.png")}/>
+                    <Header>
+                        <TouchableOpacity onPressOut={() => navigation.pop()}>
+                            <Button
+                                source={require("../../../public/images/List/left-arrow.png")}
+                            />
                         </TouchableOpacity>
-                    </InnerFooter>
-                </Footer> */}
-
+                        <HeaderTitle>{dayDate}</HeaderTitle>
+                        <TouchableOpacity onPressOut={deleteView}>
+                            <Button source={require("../../../public/images/List/delete.png")}/>
+                        </TouchableOpacity>
+                    </Header>
+                    <BodyTop>
+                        {route.params.title ? <BodyTitle>{route.params?.title}</BodyTitle> : <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty> }
+                        {route.params.contents ? <BodyContent>{route.params?.contents}</BodyContent> : <BodyContentEmpty>내용이 없습니다</BodyContentEmpty> }
+                    </BodyTop>
+                    <BodyMiddel>
+                        {/* {route.params.createdAt.slice(0,10) ? <BodyText>🗓 {dayTime}</BodyText> : <NullWrapper/> } */}
+                        {route.params.place ? <BodyText>{route.params.place}</BodyText> : <NullWrapper/> }
+                        {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> } 
+                    </BodyMiddel>
+                    <BodyBottom>
+                        <>
+                        {memoDT.filter((el) => el !== "").map((el, i:number) => {
+                            <MemoListWrapper key={i}>
+                                <MemoListLeft>
+                                    <MemoContent>{el?.memoContent}</MemoContent>
+                                    <MemoCreatedAt>{el?.createdAt.slice(0,10)}</MemoCreatedAt>
+                                </MemoListLeft>
+                                <MemoDeleteButton source={require("../../../public/images/List/delete.png")} />
+                            </MemoListWrapper>
+                        })}
+                        </>
+                        <Aaa />
+                    </BodyBottom>
+                </SafeAreaTop>
+                <MemoWrite route={route}/>
             </SafeArea>
         </>
     )
