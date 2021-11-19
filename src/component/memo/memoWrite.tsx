@@ -4,27 +4,34 @@ import { View, Image, TextInput } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
-import {v4} from 'uuid'
-import 'react-native-get-random-values'
-// import {useUserContext} from "../../../contexts/UserContext"
 
-function MemoWrite(){
+function MemoWrite({route}){
 
-    const [content, setContent] = useState("")
-    const ID = v4();
+    const user = auth().currentUser;
+    const [memoContent, setMemoContent] = useState("")
     
     // 댓글 등록
-    const user = auth().currentUser;
-    const Submit = () => {            
-        firestore()
-            .collection('Users')
-            .doc(user.email)
-            .collection("Todo")
-            .add({
-                content: content,
-                id:ID,
-                createdAt: firestore.FieldValue.serverTimestamp(),
-            })
+    const MemoSubmit = async () => {
+        const offset = new Date().getTimezoneOffset()*60000;
+        const today = new Date(Date.now() - offset)
+        const createdAt = today.toISOString()
+
+        try {
+            const reuslt = await firestore()
+                .collection("Users")
+                .doc(user.email)
+                .collection("Todo")
+                .doc(route.params.id)
+                .collection("Memo")
+                .add({
+                    memoContent,
+                    createdAt
+                })
+                alert("등록되었습니다.")
+                setMemoContent("")
+        } catch(error) {
+            console.log(error)
+        }
     }
 
     return(
@@ -34,10 +41,10 @@ function MemoWrite(){
                     placeholder="댓글을 입력하세요"
                     placeholderTextColor={"#888888"}
                     maxLength={100}
-                    value={content}
-                    onChangeText={setContent}
+                    value={memoContent}
+                    onChangeText={setMemoContent}
                 />
-                <TouchableOpacity onPressOut={Submit}>
+                <TouchableOpacity onPressOut={MemoSubmit}>
                     <SendIcon source={require("../../../public/images/List/send.png")}/>
                 </TouchableOpacity>
             </InnerFooter>

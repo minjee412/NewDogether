@@ -113,3 +113,28 @@ export const SendIcon = styled(Image)`
     width: 20px;
     height: 20px;
 `
+// 불러오는 댓글 컴포넌트
+export const MemoListWrapper = styled(View)`
+
+`
+export const MemoListLeft = styled(View)`
+
+`
+export const MemoContent = styled(View)`
+
+`
+export const MemoCreatedAt = styled(View)`
+
+`
+export const MemoDeleteButton = styled(Image)`
+    width: 15px;
+    height: 15px;
+`
+
+
+export const Aaa = styled(View)`
+width: 100px;
+height: 100px;
+background-color: red;
+
+`
