@@ -9,6 +9,7 @@ import auth from '@react-native-firebase/auth'
 import 'react-native-get-random-values'
 
 import {v4} from 'uuid'
+import DatePicker from '../../../src/component/Picker/DatePicker';
 
 
 
@@ -121,6 +122,7 @@ export default function Register(props:any) {
                 <PlacePicker value={place} setPlace={setPlace} place={place}/>
                 <ImportantPicker value={important} setImportant={setImportant} important={important}/>
             </View>
+            {/* <DatePick date={date} setDate={setDate} /> */}
             </Card_Wrapper>
         </Wrapper>
 	);

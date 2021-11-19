@@ -6,6 +6,9 @@ import { createStackNavigator } from "@react-navigation/stack"
 import TabNavigator from './pages/navigation/TabNavigator';
 import 'react-native-gesture-handler'
 import 'react-native-get-random-values'
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+
 
 
 interface IContext {
@@ -20,7 +23,9 @@ const App = () => {
   const Stack = createStackNavigator()
   const [ user, setUser] =React.useState({})
   const [ initializing, setInitialzing] =React.useState(true);
-  
+
+  const queryClient = new QueryClient()
+
 
 
   const onAuthStateChanged = (googleCredential) => {
@@ -36,6 +41,8 @@ const App = () => {
 
 
   return(
+    <QueryClientProvider client={queryClient}>
+
     <AuthContext.Provider value={{user, setUser}}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false}}>
@@ -47,6 +54,8 @@ const App = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
+    </QueryClientProvider>
+
   ) 
 }
 
