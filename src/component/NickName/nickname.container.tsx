@@ -7,7 +7,7 @@ import {
     ChangeNickName,
     NickNameInput,
 } from "./nickname.styles"
-import {Text} from "react-native"
+
 
 function NickNamePage () {
         return(
@@ -15,11 +15,11 @@ function NickNamePage () {
                 <SafeArea>
                     <NickName_Wrapper>
                         <NickName>
-                            <NickName_Title>닉네임변경</NickName_Title>
+                            <NickName_Title>닉 네 임</NickName_Title>
                         </NickName>
                         <ChangeNickName>
                             <NickNameInput>
-
+                                이중현
                             </NickNameInput>
                         </ChangeNickName>
                     </NickName_Wrapper>

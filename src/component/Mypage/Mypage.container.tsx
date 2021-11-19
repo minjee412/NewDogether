@@ -1,6 +1,7 @@
 import * as React from 'react'
 import UserInformation from '../../../pages/screens/UserInformation'
-import NickName from '../../../pages/screens/NickName'
+import NickName from '../../../pages/screens/NickName/Detail'
+import MyFriendList from '../../../pages/screens/MyFriend/list/index'
 import {
     SafeArea,
     SafeAreaTop,
@@ -9,7 +10,7 @@ import {
     // Photo,
     UserInformationWrapper,
     NickNameWrapper,
-    
+    MyFriendListWrapper,
 } from "./Mypage.styles"
 import { TouchableOpacity} from 'react-native'
 
@@ -20,11 +21,11 @@ function MyPagePage ({navigation},){
         <>   
             <SafeArea>   
                 <SafeAreaTop>
-                    <TouchableOpacity onPressOut={() => navigation.pop()}>
+                    {/* <TouchableOpacity onPressOut={() => navigation.pop()}>
                         <Button
                             source={require("../../../public/images/List/left-arrow.png")}
                         />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <HeaderTitle>마이페이지</HeaderTitle> 
                    
                 </SafeAreaTop>
@@ -33,7 +34,10 @@ function MyPagePage ({navigation},){
                 </UserInformationWrapper>
                 <NickNameWrapper>      
                     <NickName/>
-                </NickNameWrapper> 
+                </NickNameWrapper>
+                <MyFriendListWrapper>
+                    <MyFriendList/>    
+                </MyFriendListWrapper> 
             </SafeArea> 
         </> 
     )
