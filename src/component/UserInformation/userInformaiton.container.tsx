@@ -3,8 +3,9 @@ import auth from "@react-native-firebase/auth"
 import {  View, Text} from 'react-native'
 import { 
     SafeArea,
-    LeftInfo,
     Photo_Title,
+    InfoWrapper,
+    LeftInfo,
     Photo,
     RightInfo,
     Button,
@@ -17,23 +18,26 @@ export default function UserInformationPage () {
     return (
         <>
             <SafeArea>
-                <LeftInfo>
-                    <Photo_Title>프로필 사진</Photo_Title>
-                        <Photo 
-                            source={{
-                            uri: user?.photoURL,
-                            }}
-                        />
-                </LeftInfo>
-                <RightInfo>
-                    <Text>이름: {user?.displayName}</Text>  
-                    <Text>이메일: {user?.email}</Text>  
-                       
-                    <TouchableOpacity onPressOut={() => auth().signOut()}>
-                        <Button>로그아웃</Button> 
-                    </TouchableOpacity>
+                <Photo_Title>프 로 필  정 보</Photo_Title>
+                <InfoWrapper>
+                    <LeftInfo>
                         
-                </RightInfo>
+                            <Photo 
+                                source={{
+                                uri: user?.photoURL,
+                                }}
+                            />
+                    </LeftInfo>
+                    <RightInfo>
+                        <Text>이름: {user?.displayName}</Text>  
+                        <Text>이메일: {user?.email}</Text>  
+                        
+                        <TouchableOpacity onPressOut={() => auth().signOut()}>
+                            <Button>로그아웃</Button> 
+                        </TouchableOpacity>
+                            
+                    </RightInfo>
+                </InfoWrapper>
             </SafeArea>
         </>
     )

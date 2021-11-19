@@ -2,20 +2,20 @@ import * as React from 'react'
 import {
     SafeArea,
     Header,
-    // HeaderTitle,
-    // MyFriendList,
+    Header_Title,
+    MyFriendList,
 } from './myFriendList.styles'
 
 function MyFriendListPage () {
     return (
         <>
             <SafeArea>
-                {/* <Header> */}
-                    {/* <HeaderTitle></HeaderTitle>
+                <Header> 
+                    <Header_Title>친 구  목 록</Header_Title>
                 </Header>
                 <MyFriendList>
 
-                </MyFriendList> */}
+                </MyFriendList> 
             </SafeArea>
         </>
     )

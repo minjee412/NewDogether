@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MyPage from '../screens/Mypage'
 import UserInformation from '../screens/UserInformation'
-import NickName from '../screens/NickName'
+import NickName from '../screens/NickName/Detail'
 import MyFriendList from '../screens/MyFriend/list';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
