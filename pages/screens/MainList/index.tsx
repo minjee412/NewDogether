@@ -72,20 +72,19 @@ export default function MainList({navigation}){
   
     return(
     <>
-      <SafeArea>
+      <SafeArea style={{backgroundColor:'#0d0d0d'}}>
         <Title_Wrapper>
           <View style={{width:'100%', flexDirection:'row', justifyContent:'flex-end'}}>
         <IconButton type={Images.Calendar} onPressOut={() => navigation.navigate('Calendar')}/>
         </View>
-          <Date_Wrapper>
-            <Text>오늘</Text>
-            <View style={{flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
-        <Date_font >{date}</Date_font>
+          {/* <Date_Wrapper> */}
+            <Title_font style={{color:'white'}}>MEMO</Title_font>
+            {/* <View style={{flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
+        <Date_font style={{color:'white'}}>{date}</Date_font>
         </View>
-        </Date_Wrapper>
+        </Date_Wrapper> */}
         </Title_Wrapper>
-        <CardWrapper>
-
+        <CardWrapper style={{backgroundColor:'#0d0d0d'}}>
       <FlatList 
         data={post}
         renderItem={renderItem}
@@ -105,7 +104,7 @@ export default function MainList({navigation}){
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
 `
 
 const Title_Wrapper = styled.View`
@@ -116,12 +115,13 @@ const Title_Wrapper = styled.View`
   align-items: center;
   padding-bottom: 5px;
   padding-top: 20px;
-  elevation:2;
+  border: 1px solid lightgray;
+  padding: 0 20px;
 `
 
 
 const CardWrapper = styled(View)`
-  background-color:#fff;
+  /* background-color:#fff; */
   flex: 1;
   padding-top: 10px;
   padding-left: 10px;
@@ -146,7 +146,7 @@ const Input = styled(TextInput)`
   margin-right: 10px;
 `
 
-const Date_font = styled(Text)`
+const Title_font = styled(Text)`
   font-size: 32px;
 `
 

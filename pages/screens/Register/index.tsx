@@ -15,49 +15,58 @@ import DatePicker from '../../../src/component/Picker/DatePicker';
 
 const Wrapper = styled(SafeAreaView)`
     flex: 1;
-    background-color: white;
+    background-color: #0d0d0d;
 `
 const Card_Wrapper = styled(View)`
     /* flex: 0.8; */
     height: 500px;
-    background-color: white;
+    background-color: #0d0d0d;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
 `
 const Title_Wrapper = styled(View)`
+    background-color: #0d0d0d;
     height: 70px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     elevation: 2;
-    border-width: 0.1px;
+    /* border-width: 1px; */
+    /* border: 1px solid white; */
+    padding-left: 150px;
+    padding-right: 20px;
     /* border-bottom: black; */
 `
 const Title = styled(Text)`
     font-size: 16px;
     font-weight: bold;
-    color: black;
-    margin-left: 50px;
+    color: white;
+
 `
 
 const Button_Wrapper = styled(TouchableOpacity)`
-    left: 50px;
+    /* left: 50px; */
+    /* border: 1px solid lightgrey;     */
 `
 
 const Button_Text = styled(Text)`
-    color: #518099;
+    color: white;
     font-size: 16px;
     font-weight: bold;
 `
 
 const Input = styled(TextInput)`
     width: 100%;
-    /* border: 1px solid black */
-    elevation: 2;
-    border-width: 0.1px;
+    height: 20%;
+    border: 1px solid white;
+    border-radius: 10px;
+    /* elevation: 2; */
+    border-width: 1px;
     padding-left: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
+    color: white;
 `
 
 export default function Register(props:any) {
@@ -109,19 +118,19 @@ export default function Register(props:any) {
 	return (
         <Wrapper>
             <Title_Wrapper>
-            <Title>두게더 할 일 추가하기</Title>
+            <Title>메모 추가하기</Title>
             <Button_Wrapper onPressOut={Submit}>
-                <Button_Text onPress={Submit}>완료</Button_Text>
+                <Button_Text onPress={todo && details !== '' ? Submit : null}>완료</Button_Text>
             </Button_Wrapper>
             </Title_Wrapper>
             <Card_Wrapper >
-                <Input placeholder='할 일을 입력 해주세요. (50자 내외)' maxLength={50} value={todo} onChangeText={setTodo} onSubmitEditing={()=>{TodoRef.current.focus()}}></Input>
-                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' maxLength={100} value={details} onChangeText={setDetails} ref={TodoRef}></Input>
+                <TextInput placeholder='메세지를 입력 해주세요. (50자 내외)' placeholderTextColor='white' maxLength={50} value={todo} onChangeText={setTodo} onSubmitEditing={()=>{TodoRef.current.focus()}} style={{borderBottomColor:'white', borderBottomWidth:1, color:'white'}}></TextInput>
+                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' placeholderTextColor='white' maxLength={100} value={details} onChangeText={setDetails} ref={TodoRef}></Input>
                 
-            <View style={{flexDirection:'row'}}>
+            {/* <View style={{flexDirection:'row'}}> */}
                 <PlacePicker value={place} setPlace={setPlace} place={place}/>
                 <ImportantPicker value={important} setImportant={setImportant} important={important}/>
-            </View>
+            {/* </View> */}
             {/* <DatePick date={date} setDate={setDate} /> */}
             </Card_Wrapper>
         </Wrapper>

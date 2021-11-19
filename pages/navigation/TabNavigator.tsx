@@ -4,7 +4,6 @@ import MainListNavigation from './MainListNavigation'
 import MyPageNavigation from './MypageNavigation'
 // import { Image } from "react-native"
 import Movies from '../screens/Movie/MoviePage'
-import LabNavigation from './LabNavigation'
 import { useColorScheme } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -20,10 +19,10 @@ export default function TabNavigator () {
     return (
 
         <Tab.Navigator initialRouteName="Movie" screenOptions={{
-                tabBarActiveTintColor: isDark ? "#ffbe0b" : '#518099',
+                tabBarActiveTintColor: '#b2cfde',
                 tabBarInactiveTintColor: isDark ? "gray" : "gray" ,
                 
-                tabBarStyle:{ backgroundColor: isDark ? "black" : "white"},             
+                tabBarStyle:{ backgroundColor: '#0d0d0d', borderTopColor:'#0d0d0d'},             
                 tabBarShowLabel:false
         }} >
 
@@ -48,14 +47,6 @@ export default function TabNavigator () {
 
             <Tab.Screen name="MyPage"
                 component={MyPageNavigation} 
-                options={{headerShown:false, tabBarIcon:({focused, color, size})=> {
-                    return (
-                        <FontAwesome name={focused ?'user' : 'user-o'} color={color} size={size} />
-                    )
-                }}}
-            />
-            <Tab.Screen name="Lab"
-                component={LabNavigation} 
                 options={{headerShown:false, tabBarIcon:({focused, color, size})=> {
                     return (
                         <FontAwesome name={focused ?'user' : 'user-o'} color={color} size={size} />
