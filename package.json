@@ -36,6 +36,7 @@
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^9.0.0",
     "react-native-web-swiper": "^2.2.1",
+    "react-query": "^3.33.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
