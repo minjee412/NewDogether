@@ -64,7 +64,7 @@ export default function MainList({navigation}){
 
 
   const renderItem = ({item}) =>(
-    <TouchableOpacity onPressOut={()=>navigation.navigate('Detail',item)}>
+    <TouchableOpacity onLongPress={()=>navigation.navigate('Detail',item)}>
       <SortList important={item.important} title={item.title} id={item.id} user={item.user} date={item.date}/>
     </TouchableOpacity>
   )

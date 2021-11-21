@@ -1,15 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { SafeAreaView, Text,TextInput,TouchableOpacity,View } from 'react-native';
 import styled from '@emotion/native';
-import PlacePicker from '../../../src/component/Picker/PlacePicker';
+import CategoryPicker from '../../../src/component/Picker/CategoryPicker';
 import ImportantPicker from '../../../src/component/Picker/ImportantPicker';
-import DatePick from '../../../src/component/Picker/DatePicker';
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 import 'react-native-get-random-values'
 
 import {v4} from 'uuid'
-import DatePicker from '../../../src/component/Picker/DatePicker';
 
 
 
@@ -74,18 +72,16 @@ export default function Register(props:any) {
 
     const [todo,setTodo] = useState('');
     const [details, setDetails] = useState('')
-    const [place , setPlace] = useState('');
+    const [category , setCategory] = useState('');
     const [important, setImportant] = useState('');
-    const [date, setDate] = useState(new Date())
 
     const ID = v4();
     // console.log(v4());
 
     const TodoRef = useRef();
 
-    console.log(place);
+    console.log(category);
     console.log(important);
-    console.log(date);
 
 
     async function Submit (){
@@ -100,7 +96,7 @@ export default function Register(props:any) {
             .add({
                 title:todo,
                 contents:details,
-                place:place,
+                category:category,
                 ID,
                 important:important,
                 createdAt
@@ -128,7 +124,7 @@ export default function Register(props:any) {
                 <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' placeholderTextColor='white' maxLength={100} value={details} onChangeText={setDetails} ref={TodoRef}></Input>
                 
             {/* <View style={{flexDirection:'row'}}> */}
-                <PlacePicker value={place} setPlace={setPlace} place={place}/>
+                <CategoryPicker value={category} setPlace={setCategory} place={category}/>
                 <ImportantPicker value={important} setImportant={setImportant} important={important}/>
             {/* </View> */}
             {/* <DatePick date={date} setDate={setDate} /> */}

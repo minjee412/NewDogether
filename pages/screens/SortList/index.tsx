@@ -8,6 +8,8 @@ export default function SortList(props:any){
         <Wrapper style={{flex:1}}>
             {/* <Check_Box source={(props.important === '🔵 (4순위)' ? require ('../../../public/images/List/bluecircle.png') : props.important === '🟠 (2순위)' ? require('../../../public/images/List/yellowcircle.png') : props.important === '🟢 (3순위)' ? require ('../../../public/images/List/greencircle.png') : require('../../../public/images/List/redcircle.png'))}/> */}
             <List>{props.title.length > 14 ? props.title.slice(0, 14) : props.title}</List>
+            {/* <List>{props.createdAt.slice(0, 14)}</List> */}
+
             <Check_Hamburger source={(props.important === '🔵 (4순위)' ? require ('../../../public/images/List/bluehamburger.png') : props.important === '🟠 (2순위)' ? require('../../../public/images/List/yellowhambergur.png') : props.important === '🟢 (3순위)' ? require ('../../../public/images/List/greenhambergur.png') : require('../../../public/images/List/redhamburger.png'))}/>
         </Wrapper>
     )
@@ -15,7 +17,7 @@ export default function SortList(props:any){
 
 const Wrapper = styled(SafeAreaView)`
     width: 311px;
-    height: 44px;
+    height: 80px;
     border-radius: 1px;
     border-width: 0.5px;
     /* border: white; */

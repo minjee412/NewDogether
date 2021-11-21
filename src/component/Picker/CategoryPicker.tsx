@@ -22,7 +22,7 @@ border-radius: 10px;
 /* border-right-width: 0.2; */
 `
 
-export default function PlacePicker(props){
+export default function CategoryPicker(props){
 
   // console.log({place});
 
