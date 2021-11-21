@@ -59,7 +59,9 @@ const Button_Text = styled(Text)`
 const Input = styled(TextInput)`
     width: 100%;
     height: 20%;
-    border: 1px solid white;
+    background-color: #222222;
+
+    /* border: 1px solid white; */
     border-radius: 10px;
     /* elevation: 2; */
     border-width: 1px;
@@ -124,8 +126,8 @@ export default function Register(props:any) {
             </Button_Wrapper>
             </Title_Wrapper>
             <Card_Wrapper >
-                <TextInput placeholder='메세지를 입력 해주세요. (50자 내외)' placeholderTextColor='white' maxLength={50} value={todo} onChangeText={setTodo} onSubmitEditing={()=>{TodoRef.current.focus()}} style={{borderBottomColor:'white', borderBottomWidth:1, color:'white'}}></TextInput>
-                <Input placeholder='상세 내용을 입력해주세요. (100자 내외)' placeholderTextColor='white' maxLength={100} value={details} onChangeText={setDetails} ref={TodoRef}></Input>
+                <TextInput placeholder='제목을 입력 해주세요. (50자 이내)' placeholderTextColor='white' maxLength={50} value={todo} onChangeText={setTodo} onSubmitEditing={()=>{TodoRef.current.focus()}} style={{borderBottomColor:'white', borderBottomWidth:1, color:'white'}}></TextInput>
+                <Input placeholder='내용을 입력해주세요. (100자 이내)' placeholderTextColor='white' maxLength={100} value={details} onChangeText={setDetails} ref={TodoRef}></Input>
                 
             {/* <View style={{flexDirection:'row'}}> */}
                 <PlacePicker value={place} setPlace={setPlace} place={place}/>

@@ -1,39 +1,36 @@
-import React, {useEffect, useState} from "react";
-import styled from "@emotion/native"
-import { View, FlatList } from "react-native";
-import auth from '@react-native-firebase/auth'
-import firestore from '@react-native-firebase/firestore'
-//book
-import {getPosts} from "../../commons/library/posts" 
+// import React from "react";
+// import styled from "@emotion/native";
+// import {} from "react-native";
 
-function MemoList(){
+// function MemoList({item}){
 
-    // //book
-    // const [posts, setPosts] = useState("");
-    // useEffect(()=> {
-    //     getPosts().then(setPosts);
-    // }, [])
-    // //book
+//     return (
+//         <MemoListWrapper >
+//             <MemoListLeft>
+//                 <MemoCreatedAt>
+//                     {
+//                         `${item.createdAt.slice(5,7)}` + "월" +
+//                         `${item.createdAt.slice(8,10)}` + "일 " +
+//                         `${item.createdAt.slice(11,13)}` + ":" +
+//                         `${item.createdAt.slice(14,16)}` + ":" +
+//                         `${item.createdAt.slice(17,19)}`
+//                     }
+//                 </MemoCreatedAt>
+//                 <MemoContent>
+//                     {item.memoContent}
+//                     {/* {item.id} */}
+//                 </MemoContent>
+//             </MemoListLeft>
+//             <TouchableOpacity
+//                 onPressOut={deleteMemo}
+//             >
+//                 <MemoDeleteButton
+//                     source={require("../../../public/images/List/delete.png")}
+//                 />
+//             </TouchableOpacity>
+//         </MemoListWrapper>
 
-    const memo = firestore()
-        .collection("Memo"); 
+//     )
+// };
 
-    return(
-        <Wrapper>
-            <Content>{memo}</Content>
-            <WriteDate>{memo}</WriteDate>
-        </Wrapper>
-    )
-};
-
-export default MemoList;
-
-const Wrapper = styled(View)`
-
-`
-const Content = styled(View)`
-
-`
-const WriteDate = styled(View)`
-
-`
+// export default MemoList;

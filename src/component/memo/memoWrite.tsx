@@ -4,8 +4,13 @@ import { View, Image, TextInput } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
+// import {v4} from 'uuid'
+// import 'react-native-get-random-values'
+
 
 function MemoWrite({route}){
+    // const ID = v4();
+
 
     const user = auth().currentUser;
     const [memoContent, setMemoContent] = useState("")
@@ -16,18 +21,36 @@ function MemoWrite({route}){
         const today = new Date(Date.now() - offset)
         const createdAt = today.toISOString()
 
+    //     try {
+    //         const reuslt = await firestore()
+    //             .collection("Users")
+    //             .doc(user.email)
+    //             .collection("Todo")
+    //             .doc(route.params.id)
+    //             .collection("Memo")
+    //             .add({
+    //                 memoContent,
+    //                 createdAt,
+    //                 // ID
+    //             })
+    //             // alert("등록되었습니다.")
+    //             setMemoContent("")
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+    // }
+
         try {
             const reuslt = await firestore()
-                .collection("Users")
-                .doc(user.email)
-                .collection("Todo")
+                .collection("MemoList")
                 .doc(route.params.id)
                 .collection("Memo")
                 .add({
                     memoContent,
-                    createdAt
+                    createdAt,
+                    // ID
                 })
-                alert("등록되었습니다.")
+                // alert("등록되었습니다.")
                 setMemoContent("")
         } catch(error) {
             console.log(error)
@@ -57,7 +80,8 @@ export default MemoWrite;
 
 const Footer = styled(View)`
     height: 76px;
-    background-color: #ffffff;
+    /* background-color: red; */
+    /* background-color: #0d0d0d; */
     padding: 16px;
     elevation: 4;
 `
@@ -74,7 +98,7 @@ const InnerFooter = styled(View)`
 const InputBar = styled(TextInput)`
     width: 287px;
     font-size: 16px;
-    color: #000000;
+    color: #ffffff;
 `
 const SendIcon = styled(Image)`
     width: 20px;
