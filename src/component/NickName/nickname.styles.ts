@@ -6,7 +6,7 @@ export const SafeArea = styled(SafeAreaView)`
     /* background-color: skyblue; */
     background-color: #222222;
     padding-top: 5px;
-    border-radius: 10px;
+    border-radius: 20px;
 `
 
 export const NickName_Wrapper = styled(View)`
@@ -22,21 +22,21 @@ export const NickName = styled(View)`
 
 export const NickName_Title = styled(Text)`
     font-size: 16px;
-    margin-left: 22px;
+    margin-left: 20px;
     font-weight: bold;
     color: white;
 `
 
 export const ChangeNickName = styled(View)`
-    flex:0.7;
+    flex:0.6;
     display:flex;
-    padding-top:8px;
+    padding-top:5px;
 `
 
 export const NickNameInput = styled(TextInput)`
     font-size: 16px;
     margin-top:5px;
-    margin-left:20px;
+    margin-left:18px;
     margin-right: 20px;
     background-color: #E5E5E5;
     border-radius: 10px;

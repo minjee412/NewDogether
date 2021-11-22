@@ -7,9 +7,10 @@ import {
     ChangeNickName,
     NickNameInput,
 } from "./nickname.styles"
-
+import auth from "@react-native-firebase/auth"
 
 function NickNamePage () {
+    const user = auth().currentUser
         return(
             <>
                 <SafeArea>
@@ -19,7 +20,7 @@ function NickNamePage () {
                         </NickName>
                         <ChangeNickName>
                             <NickNameInput>
-                                이중현
+                                {user?.displayName}
                             </NickNameInput>
                         </ChangeNickName>
                     </NickName_Wrapper>

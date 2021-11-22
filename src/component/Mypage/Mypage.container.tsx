@@ -2,6 +2,7 @@ import * as React from 'react'
 import UserInformation from '../../../pages/screens/UserInformation'
 import NickName from '../../../pages/screens/NickName/Detail'
 import MyFriendList from '../../../pages/screens/MyFriend/list/index'
+import Push from '../../../pages/screens/Push'
 import {
     SafeArea,
     SafeAreaTop,
@@ -12,10 +13,8 @@ import {
     NickNameWrapper,
     // MyFriendListWrapper,
     LogoutButtonWrapper,
+    PushWrapper,
 } from "./Mypage.styles"
-import { TouchableOpacity} from 'react-native'
-import LogoutButton from '../../../pages/screens/Logout'
-
 
 function MyPagePage ({navigation},){
     
@@ -40,9 +39,9 @@ function MyPagePage ({navigation},){
                 {/* <MyFriendListWrapper>
                     <MyFriendList/>    
                 </MyFriendListWrapper>  */}
-                <LogoutButtonWrapper>
-                    <LogoutButton/>
-                </LogoutButtonWrapper>
+                <PushWrapper>
+                    <Push/>
+                </PushWrapper>
             </SafeArea> 
         </> 
     )
