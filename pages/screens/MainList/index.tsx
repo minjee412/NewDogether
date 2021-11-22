@@ -1,38 +1,42 @@
 import * as React from 'react';
-import {SafeAreaView, View, Text, TextInput, TouchableOpacity, Image, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from 'react-native';
 import styled from '@emotion/native';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import IconButton from '../../../src/component/IconButton/IconButton';
-import { Images } from '../../../src/images';
-import moment from 'moment';
+import {Images} from '../../../src/images';
 import 'moment/locale/ko';
-import firestore from '@react-native-firebase/firestore'
-import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import SortList from '../SortList';
 
+export default function MainList({navigation}) {
+  const [post, setPost] = React.useState(null);
+  // const [date, setDate] = React.useState(moment().format('YYYY/MM/DD'));
+  // const [now, setNow] = React.useState(new Date());
 
-
-
-
-export default function MainList({navigation}){
-  const [post, setPost] = React.useState(null)
-  const [date, setDate] = React.useState(moment().format('YYYY/MM/DD'))
-  const [now, setNow] = React.useState(new Date());
-
-  
-
-  Input.propTypes={
+  Input.propTypes = {
     placeholder: PropTypes.string,
     value: PropTypes.string.isRequired,
     onChangeText: PropTypes.func.isRequired,
-    onSubmitEditing:PropTypes.func.isRequired
+    onSubmitEditing: PropTypes.func.isRequired,
   };
-  
-  const user = auth().currentUser
+
+  const user = auth().currentUser;
   // const array = [];
-  const postCollection = firestore().collection('Users').doc(user?.email).collection('Todo').orderBy('important','desc')
-// console.log(firestore().collection('Users').doc(user.email).collection('Todo').get())
-  
+  const postCollection = firestore()
+    .collection('Users')
+    .doc(user?.email)
+    .collection('Todo')
+    .orderBy('important', 'desc');
+  // console.log(firestore().collection('Users').doc(user.email).collection('Todo').get())
 
   // React.useEffect(() => {
   //   const doc = firestore()
@@ -49,66 +53,78 @@ export default function MainList({navigation}){
   //     });
   // }, [firestore().collection('Users').doc('').collection('Diary').get()]);
 
-  async function getPosts(){
+  async function getPosts() {
     const snapshot = await postCollection.get();
-    const posts = snapshot.docs.map((doc) => ({
+    const posts = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     }));
     return posts;
   }
 
-   React.useEffect(()=> {
-     getPosts().then(setPost)
-  },[getPosts()])
+  React.useEffect(() => {
+    getPosts().then(setPost);
+  }, [getPosts()]);
 
-
-  const renderItem = ({item}) =>(
-    <TouchableOpacity onPressOut={()=>navigation.navigate('Detail',item)}>
-      <SortList important={item.important} title={item.title} id={item.id} user={item.user} date={item.date}/>
+  const renderItem = ({item}) => (
+    <TouchableOpacity onPressOut={() => navigation.navigate('Detail', item)}>
+      <SortList
+        important={item.important}
+        title={item.title}
+        id={item.id}
+        user={item.user}
+        date={item.date}
+        contents={item.contents}
+      />
     </TouchableOpacity>
-  )
-  
-  
-    return(
+  );
+
+  return (
     <>
-      <SafeArea style={{backgroundColor:'#0d0d0d'}}>
+      <SafeArea style={{backgroundColor: '#0d0d0d'}}>
         <Title_Wrapper>
-          <View style={{width:'100%', flexDirection:'row', justifyContent:'flex-end'}}>
-        <IconButton type={Images.Calendar} onPressOut={() => navigation.navigate('Calendar')}/>
-        </View>
+          <View
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+            }}>
+            <IconButton
+              type={Images.Calendar}
+              onPressOut={() => navigation.navigate('Calendar')}
+            />
+          </View>
           {/* <Date_Wrapper> */}
-            <Title_font style={{color:'white'}}>MEMO</Title_font>
-            {/* <View style={{flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
+          <Title_font style={{color: 'white'}}>MEMO</Title_font>
+          {/* <View style={{flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
         <Date_font style={{color:'white'}}>{date}</Date_font>
         </View>
         </Date_Wrapper> */}
         </Title_Wrapper>
-        <CardWrapper style={{backgroundColor:'#0d0d0d'}}>
-      <FlatList 
-        data={post}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.date}
-      />
-          <RegisterBtn onPressOut={() => navigation.navigate('Register')} >
-            <ButtonImage source={require('../../../public/images/List/Add.png')}/>
-          </RegisterBtn> 
+        <CardWrapper style={{backgroundColor: '#0d0d0d'}}>
+          <FlatList
+            data={post}
+            renderItem={renderItem}
+            keyExtractor={item => item.date}
+          />
+          <RegisterBtn onPressOut={() => navigation.navigate('Register')}>
+            <ButtonImage
+              source={require('../../../public/images/List/Add.png')}
+            />
+          </RegisterBtn>
         </CardWrapper>
       </SafeArea>
     </>
-    )
+  );
 }
-
-
-
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
   /* background-color: #FFFFFF; */
-`
+`;
 
 const Title_Wrapper = styled.View`
-  height: 20%;
+  height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -117,8 +133,7 @@ const Title_Wrapper = styled.View`
   padding-top: 20px;
   border: 1px solid lightgray;
   padding: 0 20px;
-`
-
+`;
 
 const CardWrapper = styled(View)`
   /* background-color:#fff; */
@@ -128,8 +143,8 @@ const CardWrapper = styled(View)`
   padding-right: 10px;
   justify-content: center;
   align-items: center;
-  elevation:20;
-`
+  elevation: 20;
+`;
 
 const Input_Wrapper = styled(View)`
   flex-direction: row;
@@ -138,24 +153,24 @@ const Input_Wrapper = styled(View)`
   border-bottom-width: 1px;
   margin-bottom: 10px;
   width: auto;
-`
+`;
 
 const Input = styled(TextInput)`
   width: auto;
   font-size: 15px;
   margin-right: 10px;
-`
+`;
 
 const Title_font = styled(Text)`
   font-size: 32px;
-`
+`;
 
 const Date_Wrapper = styled(View)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-`
+`;
 const RegisterBtn = styled(TouchableOpacity)`
   width: 50px;
   height: 50px;
@@ -163,9 +178,9 @@ const RegisterBtn = styled(TouchableOpacity)`
   left: 300px;
   bottom: 10px;
   z-index: 1;
-`
+`;
 
 const ButtonImage = styled(Image)`
   width: 50px;
   height: 50px;
-`
+`;
