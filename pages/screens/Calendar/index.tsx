@@ -55,7 +55,7 @@ function CalendarScreen({navigation}){
     }
 
     // const markedDates = {
-    //     ...detailV,
+    //     ...detailV, 
     //     [selecteDate]: {
     //         selected: true,
     //         marked: markedDates[selecteDate]?.markedDates
