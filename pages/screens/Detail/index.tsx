@@ -20,19 +20,17 @@ import {
     MemoContent,
     MemoCreatedAt,
     MemoDeleteButton,
-    Aaa
 } from "./Detail.styles"
-import { TouchableOpacity, Alert } from "react-native"
+import { TouchableOpacity, Alert, FlatList, KeyboardAvoidingView } from "react-native"
 import MemoWrite from "../../../src/component/memo/memoWrite"
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 function Detail({navigation, route}){
-    const dayDate = `${route.params.createdAt.slice(5,7)}` + "월 " + `${route.params.createdAt.slice(8,10)}` + "일의 할 일"
-    // const dayTime = `${route.params.createdAt.slice(11,13)}` + "시 " + `${route.params.createdAt.slice(14,16)}` + "분 작성"
-
+    const dayDate = `${route.params.createdAt.slice(5,7)}` + "월 " + `${route.params.createdAt.slice(8,10)}` + "일의 감상평"
+    const dayTime = `${route.params.createdAt.slice(11,13)}` + "시 " + `${route.params.createdAt.slice(14,16)}` + "분 작성"
     const user = auth().currentUser;
 
     // 글 삭제
@@ -66,34 +64,81 @@ function Detail({navigation, route}){
             // alert("삭제실패")
         }
     }
+    
 
     // 댓글 내용 조회
-    const MemoData = [];
-    const [ memoDT, setMemoDT ] = useState([])
-    React.useEffect(() => {
-        const doc = firestore()
-            .collection("Users")
-            .doc(user.email)
-            .collection("Todo")
-            .doc(route.params.id)
-            .collection("Memo")
-            .get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                    MemoData.push(doc.data())
-                });
-                setMemoDT(MemoData.reverse())
-                
-            })
-    },[])
-    console.log("memoDt: ", memoDT)
-    // [firestore().collection("Users").doc(user.email).collection("Todo").get()]
-    
-    console.log(memoDT.filter((el) => el !== "").map((el) => { console.log("el: ",  el.createdAt, el.memoContent)}))
+    const [ post, setPost ] = useState(null);
+    const postCollection = firestore()
+                            .collection('MemoList')
+                            .doc(route.params.id)
+                            .collection('Memo')
+                            .orderBy('createdAt','desc');
+
+    const getPosts = async () => {
+        const snapshot = await postCollection.get();
+        const posts = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+
+        return posts;
+    }
+
+    useEffect(() => {
+        getPosts().then(setPost)
+    }, [getPosts()])
+
+
+    // 메모 삭제
+    const deleteMemo = () => {
+        try {
+            const result = firestore()
+                .collection("MemoList")
+                .doc(route.params.id)
+                .collection("Memo")
+                .doc("HVhpUA7F5otmeFZ8JxvN")
+            alert("메롱")
+
+                // .doc(item.id)
+                // .delete()
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    const renderItem = ({item}) => (
+        <MemoListWrapper>
+            <MemoListLeft>
+                <MemoCreatedAt>
+                    {
+                        `${item.createdAt.slice(5,7)}` + "월" +
+                        `${item.createdAt.slice(8,10)}` + "일 " +
+                        `${item.createdAt.slice(11,13)}` + ":" +
+                        `${item.createdAt.slice(14,16)}` + ":" +
+                        `${item.createdAt.slice(17,19)}`
+                    }
+                </MemoCreatedAt>
+                <MemoContent>
+                    {item.memoContent}
+                    {/* {item.id} */}
+                </MemoContent>
+            </MemoListLeft>
+            <TouchableOpacity
+                onPressOut={deleteMemo}
+            >
+                {/* <MemoDeleteButton
+                    source={require("../../../public/images/List/delete.png")}
+                /> */}
+            </TouchableOpacity>
+        </MemoListWrapper>
+    )
+
+
 
     return(
-        <>
+        
             <SafeArea>
+                
                 <SafeAreaTop>
                     <Header>
                         <TouchableOpacity onPressOut={() => navigation.pop()}>
@@ -111,28 +156,25 @@ function Detail({navigation, route}){
                         {route.params.contents ? <BodyContent>{route.params?.contents}</BodyContent> : <BodyContentEmpty>내용이 없습니다</BodyContentEmpty> }
                     </BodyTop>
                     <BodyMiddel>
-                        {/* {route.params.createdAt.slice(0,10) ? <BodyText>🗓 {dayTime}</BodyText> : <NullWrapper/> } */}
                         {route.params.place ? <BodyText>{route.params.place}</BodyText> : <NullWrapper/> }
-                        {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> } 
+                        {route.params.important ? <BodyText>{route.params.important}</BodyText> : <NullWrapper/> }
+                        {route.params.createdAt ? <BodyText>⏰ {dayTime}</BodyText> : <NullWrapper/> }
                     </BodyMiddel>
-                    <BodyBottom>
-                        <>
-                        {memoDT.filter((el) => el !== "").map((el, i:number) => {
-                            <MemoListWrapper key={i}>
-                                <MemoListLeft>
-                                    <MemoContent>{el?.memoContent}</MemoContent>
-                                    <MemoCreatedAt>{el?.createdAt.slice(0,10)}</MemoCreatedAt>
-                                </MemoListLeft>
-                                <MemoDeleteButton source={require("../../../public/images/List/delete.png")} />
-                            </MemoListWrapper>
-                        })}
-                        </>
-                        <Aaa />
-                    </BodyBottom>
                 </SafeAreaTop>
-                <MemoWrite route={route}/>
+                {/* <MemoWrite route={route} /> */}
+            <KeyboardAwareScrollView behavior={"padding"}>
+                <BodyBottom>
+                    <FlatList
+                        data={post}
+                        renderItem={renderItem}
+                        keyExtractor={(item) => item.id}
+                    />
+                </BodyBottom>
+            
+                <MemoWrite route={route} />
+            </KeyboardAwareScrollView>
             </SafeArea>
-        </>
+
     )
 }
 

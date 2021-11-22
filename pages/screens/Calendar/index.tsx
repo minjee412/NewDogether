@@ -83,15 +83,25 @@ function CalendarScreen({navigation}){
                 // }}
                 // #
                 theme={{
-                    selectedDayBackgroundColor: "#b2cfde",
-                    selectedDayTextColor : "#b2cfde",
-                    //월화수목금토일
-                    textSectionTitleColor: "#518099",
-                    arrowColor: "#b2cfde",
-                    dotColor: "#b2cfde",
-                    todayTextColor: "#b2cfde",
+                    calendarBackground:"#111111",
+                    // 월화수목금토일
+                    textSectionTitleColor: "#ffbe0b",
+                    // 화살표 색상
+                    arrowColor: "#ffbe0b",
+                    // 점색상
+                    dotColor: "#ffbe0b",
+                    // 오늘 날짜 색상
+                    todayTextColor: "#ffbe0b",
+                    // selectedDayBackgroundColor: "#b2cfde",
+                    // selectedDayTextColor : "#b2cfde",
+                    
+                    monthTextColor: "#ffbe0b",
+                    // 남은 달 
+                    textDisabledColor:"#666666",
+                    dayTextColor:"#ffffff",
                     textMonthFontWeight: "800",
                     textDayHeaderFontWeight: "800"
+                    // #518099
                 }}
             />
         </SafeArea>
@@ -100,18 +110,18 @@ function CalendarScreen({navigation}){
 
 const SafeArea = styled(SafeAreaView)`
     flex: 1;
-    background-color: #ffffff;
+    background-color: #0d0d0d;
 `
 const Header = styled(View)`
     width: 100%;
     height: 80px;
     padding: 0px 32px;
-    background-color: #ffffff;
+    background-color: #0d0d0d;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    elevation: 4;
+    /* elevation: 4; */
 `
 const Button = styled(Image)`
     width: 20px;
@@ -127,7 +137,7 @@ const HeaderTitle = styled(Text)`
     /* font-family: ; */
     font-size: 16px;
     font-weight : 700;
-    color: #000000;
+    color: #ffffff;
 `
 
 export default CalendarScreen;

@@ -16,8 +16,9 @@ const Container = styled(View)`
 const Wrapper = styled(View)`
 width: 100%;
 margin-right: 33px;
-padding-top: 5px;
-border: 1px solid white;
+/* padding-top: 5px; */
+background-color: #222222;
+/* border: 1px solid white; */
 border-radius: 10px;
 /* border-right-width: 0.2; */
 `
@@ -29,7 +30,7 @@ export default function PlacePicker(props){
   return(
     <Wrapper>
       <View style={{alignItems:'center'}}>
-      <Text style={{color:'white'}}> 장르 </Text>
+      {/* <Text style={{color:'white'}}> 장르 </Text> */}
       </View>
     <Container>
       <Picker
