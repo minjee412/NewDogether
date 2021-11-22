@@ -10,9 +10,11 @@ import {
     // Photo,
     UserInformationWrapper,
     NickNameWrapper,
-    MyFriendListWrapper,
+    // MyFriendListWrapper,
+    LogoutButtonWrapper,
 } from "./Mypage.styles"
 import { TouchableOpacity} from 'react-native'
+import LogoutButton from '../../../pages/screens/Logout'
 
 
 function MyPagePage ({navigation},){
@@ -35,9 +37,12 @@ function MyPagePage ({navigation},){
                 <NickNameWrapper>      
                     <NickName/>
                 </NickNameWrapper>
-                <MyFriendListWrapper>
+                {/* <MyFriendListWrapper>
                     <MyFriendList/>    
-                </MyFriendListWrapper> 
+                </MyFriendListWrapper>  */}
+                <LogoutButtonWrapper>
+                    <LogoutButton/>
+                </LogoutButtonWrapper>
             </SafeArea> 
         </> 
     )

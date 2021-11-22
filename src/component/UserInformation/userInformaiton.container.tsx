@@ -8,9 +8,9 @@ import {
     LeftInfo,
     Photo,
     RightInfo,
-    Button,
+    
  } from "./userInformation.styles"
-import {TouchableOpacity} from "react-native"
+
 
 export default function UserInformationPage () {
     const user = auth().currentUser
@@ -33,9 +33,7 @@ export default function UserInformationPage () {
                         <Text style={{color:'black'}}>이메일:   {user?.email}</Text>                             
                     </RightInfo>
                 </InfoWrapper>
-                <TouchableOpacity onPressOut={() => auth().signOut()} style={{borderColor:'red', borderWidth:1, alignItems:'center', backgroundColor:'lightpink'}}>
-                            <Button style={{color:'red', fontWeight:'600'}}>로그아웃</Button> 
-                        </TouchableOpacity>
+                
             </SafeArea>
         </>
     )

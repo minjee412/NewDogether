@@ -36,7 +36,10 @@ export const NickNameWrapper = styled(View)`
     margin-top: 20px;
 `
 
-export const MyFriendListWrapper = styled(View)`
-    flex: 0.4;
-    margin-top: 20px;
+// export const MyFriendListWrapper = styled(View)`
+//     flex: 0.4;
+//     margin-top: 20px;
+// `
+export const LogoutButtonWrapper = styled(View)`
+    flex: 0.1;
 `
