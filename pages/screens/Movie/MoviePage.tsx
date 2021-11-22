@@ -108,13 +108,6 @@ export default function Movies(props) {
     </Loader>
   ) : (
     <Container>
-      <Search_Input
-        placeholder="검색어를 입력 해주세요."
-        placeholderTextColor="white"
-        returnKeyType="search"
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmit}
-      />
       <Swiper
         autoplay={true}
         autoplayTimeout={2.5}
@@ -139,7 +132,7 @@ export default function Movies(props) {
               <Column>
                 <Title>{movie.original_title}</Title>
                 {movie.vote_average > 0 ? (
-                  <Votes>⭐️{movie.vote_average}/10</Votes>
+                  <Votes>🍑 {movie.vote_average}/10</Votes>
                 ) : null}
                 <Overview>
                   {movie.overview.length > 100
@@ -168,7 +161,7 @@ export default function Movies(props) {
               </Name>
               <Votes style={{color: 'white'}}>
                 {movie.vote_average > 0
-                  ? `⭐️ ${movie.vote_average}/10`
+                  ? `🍑 ${movie.vote_average}/10`
                   : `🌱 Coming soon`}
               </Votes>
             </Movie>

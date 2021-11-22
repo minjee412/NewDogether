@@ -5,17 +5,15 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Image,
   FlatList,
 } from 'react-native';
 import styled from '@emotion/native';
 import PropTypes from 'prop-types';
-import IconButton from '../../../src/component/IconButton/IconButton';
-import {Images} from '../../../src/images';
 import 'moment/locale/ko';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import SortList from '../SortList';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function MainList({navigation}) {
   const [post, setPost] = React.useState(null);
@@ -67,7 +65,7 @@ export default function MainList({navigation}) {
   }, [getPosts()]);
 
   const renderItem = ({item}) => (
-    <TouchableOpacity onPressOut={() => navigation.navigate('Detail', item)}>
+    <TouchableOpacity onLongPress={() => navigation.navigate('Detail', item)}>
       <SortList
         important={item.important}
         title={item.title}
@@ -75,6 +73,7 @@ export default function MainList({navigation}) {
         user={item.user}
         date={item.date}
         contents={item.contents}
+        category={item.category}
       />
     </TouchableOpacity>
   );
@@ -83,23 +82,13 @@ export default function MainList({navigation}) {
     <>
       <SafeArea style={{backgroundColor: '#0d0d0d'}}>
         <Title_Wrapper>
-          <View
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-            }}>
-            <IconButton
-              type={Images.Calendar}
-              onPressOut={() => navigation.navigate('Calendar')}
+          <Title_font style={{color: '#ffbe0b'}}>memo</Title_font>
+          <TouchableOpacity onPressOut={() => navigation.navigate('Calendar')}>
+            <MaterialCommunityIcons
+              name="calendar-month-outline"
+              style={{fontSize: 24, color: '#ffbe0b'}}
             />
-          </View>
-          {/* <Date_Wrapper> */}
-          <Title_font style={{color: 'white'}}>MEMO</Title_font>
-          {/* <View style={{flexDirection:'row',justifyContent:'center', alignItems:'center'}}>
-        <Date_font style={{color:'white'}}>{date}</Date_font>
-        </View>
-        </Date_Wrapper> */}
+          </TouchableOpacity>
         </Title_Wrapper>
         <CardWrapper style={{backgroundColor: '#0d0d0d'}}>
           <FlatList
@@ -107,10 +96,10 @@ export default function MainList({navigation}) {
             renderItem={renderItem}
             keyExtractor={item => item.date}
           />
-          <RegisterBtn onPressOut={() => navigation.navigate('Register')}>
-            <ButtonImage
-              source={require('../../../public/images/List/Add.png')}
-            />
+          <RegisterBtn
+            onPressOut={() => navigation.navigate('Register')}
+            style={{borderWidth: 1, borderColor: 'white'}}>
+            <ButtonText>+</ButtonText>
           </RegisterBtn>
         </CardWrapper>
       </SafeArea>
@@ -127,12 +116,14 @@ const Title_Wrapper = styled.View`
   height: 15%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding-bottom: 5px;
-  padding-top: 20px;
-  border: 1px solid lightgray;
-  padding: 0 20px;
+  padding-top: 30px;
+  /* border: 1px solid lightgray; */
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const CardWrapper = styled(View)`
@@ -146,15 +137,6 @@ const CardWrapper = styled(View)`
   elevation: 20;
 `;
 
-const Input_Wrapper = styled(View)`
-  flex-direction: row;
-  align-items: center;
-  border-bottom-color: gray;
-  border-bottom-width: 1px;
-  margin-bottom: 10px;
-  width: auto;
-`;
-
 const Input = styled(TextInput)`
   width: auto;
   font-size: 15px;
@@ -163,6 +145,7 @@ const Input = styled(TextInput)`
 
 const Title_font = styled(Text)`
   font-size: 32px;
+  font-weight: 700;
 `;
 
 const Date_Wrapper = styled(View)`
@@ -175,12 +158,17 @@ const RegisterBtn = styled(TouchableOpacity)`
   width: 50px;
   height: 50px;
   position: absolute;
-  left: 300px;
-  bottom: 10px;
-  z-index: 1;
+  left: 80%;
+  bottom: 10%;
+  background-color: #ffbe0b;
+  border-radius: 50px;
+  /* justify-content: center; */
+  align-items: center;
+  /* border-style: none; */
+  /* z-index: 1; */
 `;
 
-const ButtonImage = styled(Image)`
-  width: 50px;
-  height: 50px;
+const ButtonText = styled(Text)`
+  font-size: 33px;
+  color: white;
 `;

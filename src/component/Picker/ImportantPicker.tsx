@@ -12,9 +12,9 @@ const Container = styled(View)`
 export default function ImportantPicker(props) {
   return (
     <Container>
-      <View style={{alignItems: 'center', marginTop: 5}}>
-        <Text style={{color: 'white', alignItems: 'center'}}>
-          ❗️ 나만의 평점
+      <View style={{marginTop: 5, marginLeft: 15}}>
+        <Text style={{color: 'white', alignItems: 'center', fontSize: 16}}>
+          평점
         </Text>
       </View>
       <Picker
@@ -28,30 +28,26 @@ export default function ImportantPicker(props) {
           color: 'white',
         }}
         dropdownIconColor="white">
-        <Picker.Item
-          style={{color: '#311b92'}}
-          label="🍑  (1점)"
-          value="🍑 x 1"
-        />
+        <Picker.Item style={{color: '#311b92'}} label="🍑  (1점)" value="🍑" />
         <Picker.Item
           style={{color: '#1a237e'}}
           label="🍑 🍑  (2점)"
-          value="🍑 x 2"
+          value="🍑 🍑"
         />
         <Picker.Item
           style={{color: '#006064'}}
           label="🍑 🍑 🍑  (3점)"
-          value="🍑 x 3"
+          value="🍑 🍑 🍑"
         />
         <Picker.Item
           style={{color: '#f57f17'}}
           label="🍑 🍑 🍑 🍑  (4점)"
-          value="🍑 x 4"
+          value="🍑 🍑 🍑 🍑"
         />
         <Picker.Item
           style={{color: 'red'}}
           label="🍑 🍑 🍑 🍑 🍑  (5점)"
-          value="🍑 x 5"
+          value="🍑 🍑 🍑 🍑 🍑"
         />
       </Picker>
     </Container>
