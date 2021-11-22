@@ -27,6 +27,12 @@ export default function CategoryPicker(props) {
 
   return (
     <Wrapper>
+      <View style={{marginTop: 5, marginLeft: 15}}>
+        <Text style={{color: 'white', alignItems: 'center', fontSize: 16}}>
+          장르
+        </Text>
+      </View>
+
       <View style={{alignItems: 'center'}}>
         {/* <Text style={{color:'white'}}> 장르 </Text> */}
       </View>

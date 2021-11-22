@@ -39,14 +39,14 @@ const Title_Wrapper = styled(View)`
   elevation: 2;
   /* border-width: 1px; */
   /* border: 1px solid white; */
-  padding-left: 150px;
+  padding-left: 20px;
   padding-right: 20px;
   /* border-bottom: black; */
 `;
 const Title = styled(Text)`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: #ffbe0b;
 `;
 
 const Button_Wrapper = styled(TouchableOpacity)`
@@ -55,8 +55,8 @@ const Button_Wrapper = styled(TouchableOpacity)`
 `;
 
 const Button_Text = styled(Text)`
-  color: white;
-  font-size: 16px;
+  color: #ffbe0b;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -79,7 +79,7 @@ export default function Register(props: any) {
 
   const [todo, setTodo] = useState('');
   const [details, setDetails] = useState('');
-  const [place, setPlace] = useState('');
+  const [category, setCategory] = useState('');
   const [important, setImportant] = useState('');
   const [date, setDate] = useState(new Date());
   const [isModalVisible, setModalVisible] = useState(false);
@@ -89,7 +89,7 @@ export default function Register(props: any) {
 
   const TodoRef = useRef();
 
-  console.log(place);
+  console.log(category);
   console.log(important);
   console.log(date);
 
@@ -115,13 +115,13 @@ export default function Register(props: any) {
         .add({
           title: todo,
           contents: details,
-          place: place,
+          category: category,
           ID,
           important: important,
           createdAt,
         });
       //   alert('등록되었습니다.');
-      console.log(result);
+      //   console.log(category);
       props.navigation.navigate('MainList');
     } catch (error) {
       console.log(error);
@@ -156,6 +156,7 @@ export default function Register(props: any) {
         <TextInput
           placeholder="제목을 입력 해주세요. (50자 이내)"
           placeholderTextColor="white"
+          returnKeyType="done"
           maxLength={50}
           value={todo}
           onChangeText={setTodo}
@@ -170,6 +171,7 @@ export default function Register(props: any) {
         <Input
           placeholder="내용을 입력해주세요."
           placeholderTextColor="white"
+          returnKeyType="done"
           value={details}
           onChangeText={setDetails}
           ref={TodoRef}
@@ -177,7 +179,11 @@ export default function Register(props: any) {
           multiline={true}></Input>
 
         {/* <View style={{flexDirection:'row'}}> */}
-        <CategoryPicker value={place} setPlace={setPlace} place={place} />
+        <CategoryPicker
+          value={category}
+          setPlace={setCategory}
+          place={category}
+        />
         <ImportantPicker
           value={important}
           setImportant={setImportant}
