@@ -1,15 +1,17 @@
 import React from 'react';
-import auth, { firebase } from '@react-native-firebase/auth';
-import { GoogleSignin, GoogleSigninButton } from '@react-native-community/google-signin';
-import { Image, View } from 'react-native';
-import MainListNavigation from '../navigation/MainListNavigation'
+import auth, {firebase} from '@react-native-firebase/auth';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from '@react-native-community/google-signin';
+import {Image, View} from 'react-native';
+import MainListNavigation from '../stack/MainListNavigation';
 import styled from '@emotion/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore'
-import ActivityIndicator from './ActivityIndicator/index'
+import firestore from '@react-native-firebase/firestore';
+import ActivityIndicator from './ActivityIndicator/index';
 
-export default function LoginPage() { 
-
+export default function LoginPage() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
@@ -20,54 +22,52 @@ export default function LoginPage() {
   }, []);
 
   async function onGoogleButtonPress() {
-    console.log('로그인버튼누르기전입니다')
+    console.log('로그인버튼누르기전입니다');
 
-    const userInfo : any = await GoogleSignin.signIn();
+    const userInfo: any = await GoogleSignin.signIn();
     console.log(userInfo.idToken);
-    AsyncStorage.setItem('accessToken', userInfo.idToken)
-    const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
-    firestore().collection("Users").get(userInfo.user)
+    AsyncStorage.setItem('accessToken', userInfo.idToken);
+    const googleCredential = auth.GoogleAuthProvider.credential(
+      userInfo.idToken,
+    );
+    firestore().collection('Users').get(userInfo.user);
     return auth().signInWithCredential(googleCredential);
   }
 
   if (loggedIn) {
     return (
-      <>  
-        <ActivityIndicator/>
-        <MainListNavigation/>
+      <>
+        <ActivityIndicator />
+        <MainListNavigation />
       </>
-    )
+    );
   }
-    auth().onAuthStateChanged((user) => {
-        if (user) {
-          setLoggedIn(true);
-        } else {
-          setLoggedIn(false);
-        }
-    });
+  auth().onAuthStateChanged(user => {
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  });
 
   return (
     <Wrapper>
-      <Logo source={require('../../public/images/Logo/DogetherLogo.png')}/>
-      <GoogleSigninButton 
-        onPress={onGoogleButtonPress}
-      />
+      <Logo source={require('../../public/images/Logo/DogetherLogo.png')} />
+      <GoogleSigninButton onPress={onGoogleButtonPress} />
     </Wrapper>
-  )    
+  );
 }
 
 const Wrapper = styled(View)`
-  flex:1;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F5FBFF;
-`
-
+  background-color: #f5fbff;
+`;
 
 const Logo = styled(Image)`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-`
-
+`;
