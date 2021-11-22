@@ -89,16 +89,56 @@ function Detail({navigation, route}){
     }, [getPosts()])
 
 
+    // // 메모 삭제
+    // const deleteMemo = (itemId) => {
+    //     try {
+    //         const result = firestore()
+    //             .collection("MemoList")
+    //             .doc(route.params.id)
+    //             .collection("Memo")
+    //             .doc(itemId)
+    //             .delete()
+    //             // .doc(item.id)
+    //             // .delete()
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+    // }
+
+    // const renderItem = ({item}) => (
+    //     <MemoListWrapper>
+    //         <MemoListLeft>
+    //             <MemoCreatedAt>
+    //                 {
+    //                     `${item.createdAt.slice(5,7)}` + "월" +
+    //                     `${item.createdAt.slice(8,10)}` + "일 " +
+    //                     `${item.createdAt.slice(11,13)}` + ":" +
+    //                     `${item.createdAt.slice(14,16)}` + ":" +
+    //                     `${item.createdAt.slice(17,19)}`
+    //                 }
+    //             </MemoCreatedAt>
+    //             <MemoContent>
+    //                 {item.memoContent}
+    //             </MemoContent>
+    //         </MemoListLeft>
+    //         <TouchableOpacity
+    //             onPressOut={()=>deleteMemo(item.id)}
+    //         >
+    //             <MemoDeleteButton
+    //                 source={require("../../../public/images/List/delete.png")}
+    //             />
+    //         </TouchableOpacity>
+    //     </MemoListWrapper>
+    // )
     // 메모 삭제
-    const deleteMemo = () => {
+    const deleteMemo = (itemId) => () => {
         try {
             const result = firestore()
                 .collection("MemoList")
                 .doc(route.params.id)
                 .collection("Memo")
-                .doc("HVhpUA7F5otmeFZ8JxvN")
-            alert("메롱")
-
+                .doc(itemId)
+                .delete()
                 // .doc(item.id)
                 // .delete()
         } catch(error) {
@@ -120,15 +160,14 @@ function Detail({navigation, route}){
                 </MemoCreatedAt>
                 <MemoContent>
                     {item.memoContent}
-                    {/* {item.id} */}
                 </MemoContent>
             </MemoListLeft>
             <TouchableOpacity
-                onPressOut={deleteMemo}
+                onPressOut={deleteMemo(item.id)}
             >
-                {/* <MemoDeleteButton
+                <MemoDeleteButton
                     source={require("../../../public/images/List/delete.png")}
-                /> */}
+                />
             </TouchableOpacity>
         </MemoListWrapper>
     )
