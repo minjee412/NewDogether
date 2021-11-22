@@ -43,17 +43,17 @@ const App = () => {
   return(
     <QueryClientProvider client={queryClient}>
 
-    <AuthContext.Provider value={{user, setUser}}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false}}>
-          {user ? (
-            <Stack.Screen name="tabNavigator" component={TabNavigator} />
-          ) : (
-            <Stack.Screen name="LoginPage" component={LoginPage} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AuthContext.Provider>
+      <AuthContext.Provider value={{user, setUser}}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false}}>
+            {user ? (
+              <Stack.Screen name="tabNavigator" component={TabNavigator} />
+            ) : (
+              <Stack.Screen name="LoginPage" component={LoginPage} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </AuthContext.Provider>
     </QueryClientProvider>
 
   ) 

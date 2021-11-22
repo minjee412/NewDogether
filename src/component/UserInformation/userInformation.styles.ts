@@ -60,6 +60,3 @@ export const RightInfo = styled(View)`
     margin-left:15px;
 `
 
-export const Button = styled(Text)`
-    
-`
