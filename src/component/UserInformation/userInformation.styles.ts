@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import {Image, SafeAreaView, View, Text} from 'react-native'
+import {Image, SafeAreaView, View, Text,TouchableOpacity} from 'react-native'
 
 
 
@@ -8,9 +8,15 @@ export const SafeArea = styled(SafeAreaView)`
     /* background-color: #FFFFFF; */
     display: flex;
     flex-direction: column;
-    background-color: #222222;
+    background-color: #0d0d0d;
     padding: 10px 10px;
-    border-radius: 10px;
+    
+`
+
+export const InforHeader = styled(View)`
+    flex:0.7;
+    background-color: #222222;
+    border-radius: 20px;
 `
 export const Photo_Title = styled(Text)`
     flex:0.2;
@@ -59,4 +65,20 @@ export const RightInfo = styled(View)`
     margin-right:20px;
     margin-left:15px;
 `
-
+export const LogoutButton = styled(TouchableOpacity)`
+    flex: 0.3;
+    background-color:  #222222;
+    /* #222222; */
+    margin-top: 15px;
+    border-radius: 20px;
+`
+export const Button = styled(Text)`
+    flex:1;
+    display:flex;
+    font-size: 16px;
+    margin-left: 22px;
+    font-weight: bold;
+    color: white;
+    margin-top:15px;
+    
+`

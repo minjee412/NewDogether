@@ -7,7 +7,8 @@ import TabNavigator from './pages/navigation/TabNavigator';
 import 'react-native-gesture-handler'
 import 'react-native-get-random-values'
 import { QueryClient, QueryClientProvider } from 'react-query';
-
+import messaging from '@react-native-firebase/messaging'
+import { Alert } from 'react-native';
 
 
 
@@ -37,6 +38,13 @@ const App = () => {
     const subscriber = Auth().onAuthStateChanged(onAuthStateChanged)
     return subscriber
   }, [])
+
+  React.useEffect (() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('알람창입니다', JSON.stringify(remoteMessage))
+    })
+    return unsubscribe
+  }, []);
   
 
 

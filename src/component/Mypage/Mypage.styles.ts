@@ -27,13 +27,14 @@ export const HeaderTitle = styled(Text)`
     color: white;
 `
 export const UserInformationWrapper = styled(View)`
-    flex: 0.3;
+    flex: 0.4;
     /* background-color: grey; */
 `
 
 export const NickNameWrapper = styled(View)`
-    flex: 0.23;
-    margin-top: 20px;
+    flex: 0.15;
+    
+    padding: 10px 10px;
 `
 
 // export const MyFriendListWrapper = styled(View)`
@@ -41,5 +42,10 @@ export const NickNameWrapper = styled(View)`
 //     margin-top: 20px;
 // `
 export const LogoutButtonWrapper = styled(View)`
-    flex: 0.1;
+    flex: 0.15;
+`
+
+export const PushWrapper = styled(View)`
+    flex: 0.15;
+    padding: 10px 10px;
 `
