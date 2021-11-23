@@ -27,11 +27,12 @@ import {
   Alert,
   FlatList,
   KeyboardAvoidingView,
+  View,
 } from 'react-native';
-import MemoWrite from '../../../src/component/memo/memoWrite';
+import CommentWrite from '../../../src/component/Comment/CommentWrite';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+// import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ScrollView} from 'react-native-gesture-handler';
 
 function Detail({navigation, route}) {
@@ -187,61 +188,62 @@ function Detail({navigation, route}) {
   );
 
   return (
-    <SafeArea>
-      <SafeAreaTop>
-        <Header>
-          <TouchableOpacity onPressOut={() => navigation.pop()}>
-            {/* <Button
-              source={require('../../../public/images/List/left-arrow.png')}
-            /> */}
-            <MaterialCommunityIcons
-              name="chevron-left"
-              style={{fontSize: 28, color: '#ffbe0b'}}
-            />
-          </TouchableOpacity>
-          <HeaderTitle>{dayDate}</HeaderTitle>
-          <TouchableOpacity onPressOut={deleteView}>
-            {/* <Button
-              source={require('../../../public/images/List/delete.png')}
-            /> */}
-            <MaterialCommunityIcons
-              name="close"
-              style={{fontSize: 28, color: '#ffbe0b'}}
-            />
-          </TouchableOpacity>
-        </Header>
-        <BodyTop>
-          {route.params.title ? (
-            <BodyTitle>{route.params?.title}</BodyTitle>
-          ) : (
-            <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty>
-          )}
-          {route.params.contents ? (
-            <BodyContent>{route.params?.contents}</BodyContent>
-          ) : (
-            <BodyContentEmpty>내용이 없습니다</BodyContentEmpty>
-          )}
-        </BodyTop>
-        <ScrollView horizontal={true}>
-          {route.params.category ? (
-            <BodyText>{route.params.category}</BodyText>
-          ) : (
-            <NullWrapper />
-          )}
-          {route.params.important ? (
-            <BodyText>{route.params.important}</BodyText>
-          ) : (
-            <NullWrapper />
-          )}
-          {route.params.createdAt ? (
-            <BodyText>⏰ {dayTime}</BodyText>
-          ) : (
-            <NullWrapper />
-          )}
-        </ScrollView>
-      </SafeAreaTop>
-      {/* <MemoWrite route={route} /> */}
-      <KeyboardAwareScrollView>
+    <ScrollView>
+      <SafeArea>
+        <SafeAreaTop>
+          <Header>
+            <TouchableOpacity onPressOut={() => navigation.pop()}>
+              {/* <Button
+                source={require('../../../public/images/List/left-arrow.png')}
+              /> */}
+              <MaterialCommunityIcons
+                name="chevron-left"
+                style={{fontSize: 28, color: '#ffbe0b'}}
+              />
+            </TouchableOpacity>
+            <HeaderTitle>{dayDate}</HeaderTitle>
+            <TouchableOpacity onPressOut={deleteView}>
+              {/* <Button
+                source={require('../../../public/images/List/delete.png')}
+              /> */}
+              <MaterialCommunityIcons
+                name="close"
+                style={{fontSize: 28, color: '#ffbe0b'}}
+              />
+            </TouchableOpacity>
+          </Header>
+          <BodyTop>
+            {route.params.title ? (
+              <BodyTitle>{route.params?.title}</BodyTitle>
+            ) : (
+              <BodyTitleEmpty>제목이 없습니다</BodyTitleEmpty>
+            )}
+            {route.params.contents ? (
+              <BodyContent>{route.params?.contents}</BodyContent>
+            ) : (
+              <BodyContentEmpty>내용이 없습니다</BodyContentEmpty>
+            )}
+          </BodyTop>
+          <View style={{flexDirection: 'row'}}>
+            {route.params.category ? (
+              <BodyText>{route.params.category}</BodyText>
+            ) : (
+              <NullWrapper />
+            )}
+            {route.params.important ? (
+              <BodyText>{route.params.important}</BodyText>
+            ) : (
+              <NullWrapper />
+            )}
+            {route.params.createdAt ? (
+              <BodyText>⏰ {dayTime}</BodyText>
+            ) : (
+              <NullWrapper />
+            )}
+          </View>
+        </SafeAreaTop>
+        {/* <MemoWrite route={route} /> */}
+        {/* <KeyboardAwareScrollView> */}
         <BodyBottom>
           <FlatList
             data={post}
@@ -250,9 +252,10 @@ function Detail({navigation, route}) {
           />
         </BodyBottom>
 
-        <MemoWrite route={route} />
-      </KeyboardAwareScrollView>
-    </SafeArea>
+        <CommentWrite route={route} />
+        {/* </KeyboardAwareScrollView> */}
+      </SafeArea>
+    </ScrollView>
   );
 }
 

@@ -1,20 +1,15 @@
-import * as React from 'react'
-import UserInformation from '../../../pages/screens/UserInformation'
-import NickName from '../../../pages/screens/NickName/Detail'
+import * as React from 'react';
+import UserInformation from '../../../pages/screens/UserInformation';
+import NickName from '../../../pages/screens/NickName/Detail';
 
-import Push from '../../../pages/screens/Push'
+import Push from '../../../pages/screens/Push';
 import {
-    SafeArea,
-    SafeAreaTop,
-    Button,
-    HeaderTitle,
-    UserInformationWrapper,
-    NickNameWrapper,
-    PushWrapper,
-} from "./Mypage.styles"
-
-
-  // LogoutButtonWrapper,
+  SafeArea,
+  SafeAreaTop,
+  Button,
+  HeaderTitle,
+  UserInformationWrapper,
+  NickNameWrapper,
   PushWrapper,
 } from './Mypage.styles';
 

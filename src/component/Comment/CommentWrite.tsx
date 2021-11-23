@@ -6,7 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function MemoWrite({route}) {
+function CommentWrite({route}) {
   const user = auth().currentUser;
   const [memoContent, setMemoContent] = useState('');
 
@@ -74,7 +74,7 @@ function MemoWrite({route}) {
   );
 }
 
-export default MemoWrite;
+export default CommentWrite;
 
 const Footer = styled(View)`
   height: 76px;
