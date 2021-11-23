@@ -21,19 +21,23 @@ export default function UserInformationPage () {
         <>
             <SafeArea>
                 <InforHeader>
-                    <Photo_Title>프 로 필  정 보</Photo_Title>
+                    <Photo_Title>프로필 정보</Photo_Title>
                     <InfoWrapper>
                         <LeftInfo>
-                            
-                                <Photo 
-                                    source={{
-                                    uri: user?.photoURL,
-                                    }}
-                                />
+                            <Photo source={{uri: user?.photoURL,}}/>
                         </LeftInfo>
                         <RightInfo>
-                            <Text style={{color:'white'}}>이름:   {user?.displayName}</Text>  
-                            <Text style={{color:'white'}}>이메일:   {user?.email}</Text>                             
+                            <Text 
+                                style={{
+                                color:'white', 
+                                fontWeight:'bold', 
+                                fontSize: 16,
+                                marginLeft:8,
+                                }}
+                            >   
+                                {user?.displayName}
+                            </Text>  
+                            <Text style={{color:'white', fontSize: 14}}>   {user?.email}</Text>                             
                         </RightInfo>
                     </InfoWrapper>
                 </InforHeader>

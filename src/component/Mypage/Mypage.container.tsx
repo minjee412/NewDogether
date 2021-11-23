@@ -1,15 +1,18 @@
-import * as React from 'react';
-import UserInformation from '../../../pages/screens/UserInformation';
-import NickName from '../../../pages/screens/NickName/Detail';
-import Push from '../../../pages/screens/Push';
+import * as React from 'react'
+import UserInformation from '../../../pages/screens/UserInformation'
+import NickName from '../../../pages/screens/NickName/Detail'
+
+import Push from '../../../pages/screens/Push'
 import {
-  SafeArea,
-  SafeAreaTop,
-  Button,
-  HeaderTitle,
-  // Photo,
-  UserInformationWrapper,
-  NickNameWrapper,
+    SafeArea,
+    SafeAreaTop,
+    Button,
+    HeaderTitle,
+    UserInformationWrapper,
+    NickNameWrapper,
+    PushWrapper,
+} from "./Mypage.styles"
+
 
   // LogoutButtonWrapper,
   PushWrapper,
@@ -25,6 +28,7 @@ function MyPagePage({navigation}) {
                             source={require("../../../public/images/List/left-arrow.png")}
                         />
                     </TouchableOpacity> */}
+
           <HeaderTitle>마이페이지</HeaderTitle>
         </SafeAreaTop>
         <UserInformationWrapper>

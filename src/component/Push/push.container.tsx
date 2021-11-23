@@ -18,23 +18,30 @@ export default function PushPage () {
 
 const SafeArea = styled(SafeAreaView)`
     flex: 1;
-    background-color: #222222;
     display:flex;
-    border-radius: 20px;
+    /* background-color:  #222222; */
+    /* margin-top: 30px; */
+    border-radius: 10px;
+    align-items: center;
+    margin-left:25px;
+    margin-right:25px;
+    background-color: #FFBE0B;
 `
 
 const PushView = styled(View)`
     flex: 1;
-    background-color: #222222;
+    
     display:flex;
     justify-content: center;
-    border-radius: 20px;
+   
 `
 const PushText = styled(Text)`
-    flex:0.3;
+    flex:1;
     display:flex;
-    font-size: 16px;
-    margin-left: 22px;
+    font-size: 14px;
+    color: #0d0d0d;
+    margin-top:12px;
+    justify-content:center;
     font-weight: bold;
-    color: white;
+    
 `

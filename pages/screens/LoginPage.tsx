@@ -52,22 +52,38 @@ export default function LoginPage() {
 
   return (
     <Wrapper>
-      <Logo source={require('../../public/images/Logo/DogetherLogo.png')} />
+      {/* <LogoView>   */}
+        
+        <Logo 
+          source={require('../../public/images/Logo/MovitesLogo.png')}
+          // resizeMode='contain' 
+        />
+      {/* </LogoView> */}
       <GoogleSigninButton onPress={onGoogleButtonPress} />
     </Wrapper>
   );
 }
 
 const Wrapper = styled(View)`
-  flex: 1;
+  width: 375px;
+  height: 667px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5fbff;
+  background-color: #0d0d0d;
+
 `;
 
+// const LogoView = styled(View)`
+//   flex: 0.1;
+// `
 const Logo = styled(Image)`
-  justify-content: center;
-  align-items: center;
+
+  width: 260px;
+  height: 100px;
+  /* justify-content: center;
+  align-items: center; */
   margin-bottom: 50px;
+  /* display:flex; */
+  background-color: #0d0d0d;
 `;

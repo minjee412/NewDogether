@@ -85,7 +85,7 @@ export default function MainList({navigation}) {
           <Title_font style={{color: '#ffbe0b'}}>memo</Title_font>
           <TouchableOpacity onPressOut={() => navigation.navigate('Calendar')}>
             <MaterialCommunityIcons
-              name="calendar-month-outline"
+              name="calendar-month"
               style={{fontSize: 24, color: '#ffbe0b'}}
             />
           </TouchableOpacity>
