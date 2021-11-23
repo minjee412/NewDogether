@@ -13,32 +13,36 @@ import {
     PushWrapper,
 } from "./Mypage.styles"
 
-function MyPagePage ({navigation},){
-    
-    return(
-        <>   
-            <SafeArea>   
-                <SafeAreaTop>
-                    {/* <TouchableOpacity onPressOut={() => navigation.pop()}>
+
+  // LogoutButtonWrapper,
+  PushWrapper,
+} from './Mypage.styles';
+
+function MyPagePage({navigation}) {
+  return (
+    <>
+      <SafeArea>
+        <SafeAreaTop>
+          {/* <TouchableOpacity onPressOut={() => navigation.pop()}>
                         <Button
                             source={require("../../../public/images/List/left-arrow.png")}
                         />
                     </TouchableOpacity> */}
-                    <HeaderTitle>마이페이지</HeaderTitle> 
-                   
-                </SafeAreaTop>
-                <UserInformationWrapper>
-                    <UserInformation/>
-                </UserInformationWrapper>
-                <NickNameWrapper>      
-                    <NickName/>
-                </NickNameWrapper>
-                <PushWrapper>
-                    <Push/>
-                </PushWrapper>
-            </SafeArea> 
-        </> 
-    )
+
+          <HeaderTitle>마이페이지</HeaderTitle>
+        </SafeAreaTop>
+        <UserInformationWrapper>
+          <UserInformation />
+        </UserInformationWrapper>
+        <NickNameWrapper>
+          <NickName />
+        </NickNameWrapper>
+        <PushWrapper>
+          <Push />
+        </PushWrapper>
+      </SafeArea>
+    </>
+  );
 }
 
 export default MyPagePage;

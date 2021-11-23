@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import 'moment/locale/ko';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import SortList from '../SortList';
+import SortList from '../../../src/component/SortList';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function MainList({navigation}) {

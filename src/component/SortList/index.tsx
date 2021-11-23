@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/native';
-import {Image, SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 
 export default function SortList(props: any) {
   // console.log(props.category);
