@@ -1,18 +1,15 @@
 import * as React from 'react'
 import UserInformation from '../../../pages/screens/UserInformation'
 import NickName from '../../../pages/screens/NickName/Detail'
-import MyFriendList from '../../../pages/screens/MyFriend/list/index'
+
 import Push from '../../../pages/screens/Push'
 import {
     SafeArea,
     SafeAreaTop,
     Button,
     HeaderTitle,
-    // Photo,
     UserInformationWrapper,
     NickNameWrapper,
-    MyFriendListWrapper,
-    // LogoutButtonWrapper,
     PushWrapper,
 } from "./Mypage.styles"
 
@@ -39,9 +36,6 @@ function MyPagePage ({navigation},){
                 <PushWrapper>
                     <Push/>
                 </PushWrapper>
-                <MyFriendListWrapper>
-                    <MyFriendList/>    
-                </MyFriendListWrapper> 
             </SafeArea> 
         </> 
     )
