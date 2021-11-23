@@ -28,21 +28,25 @@ export default function ImportantPicker(props) {
           color: 'white',
         }}
         dropdownIconColor="white">
-        <Picker.Item style={{color: '#311b92'}} label="🍑  (1점)" value="🍑" />
+        <Picker.Item
+          style={{color: '#311b92'}}
+          label="🍑  (1점)"
+          value="🍑 x 1"
+        />
         <Picker.Item
           style={{color: '#1a237e'}}
           label="🍑 🍑  (2점)"
-          value="🍑 🍑"
+          value="🍑 x 2"
         />
         <Picker.Item
           style={{color: '#006064'}}
           label="🍑 🍑 🍑  (3점)"
-          value="🍑 🍑 🍑"
+          value="🍑 x 3"
         />
         <Picker.Item
           style={{color: '#f57f17'}}
           label="🍑 🍑 🍑 🍑  (4점)"
-          value="🍑 🍑 🍑 🍑"
+          value="🍑 x 4"
         />
         <Picker.Item
           style={{color: 'red'}}
