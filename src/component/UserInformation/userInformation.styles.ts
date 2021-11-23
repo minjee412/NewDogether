@@ -14,7 +14,7 @@ export const SafeArea = styled(SafeAreaView)`
 `
 
 export const InforHeader = styled(View)`
-    flex:0.7;
+    flex:0.5;
     background-color: #222222;
     border-radius: 20px;
 `
@@ -59,18 +59,19 @@ export const RightInfo = styled(View)`
     /* background-color: yellow; */
     display: flex;
     justify-content: space-evenly;
-    
-    background-color: #E5E5E5;
+    background-color: #222222;
     border-radius: 10px;
     margin-right:20px;
-    margin-left:15px;
+    margin-left:40px;
 `
 export const LogoutButton = styled(TouchableOpacity)`
     flex: 0.3;
+    display:flex;
     background-color:  #222222;
     /* #222222; */
     margin-top: 15px;
     border-radius: 20px;
+    
 `
 export const Button = styled(Text)`
     flex:1;
@@ -79,6 +80,7 @@ export const Button = styled(Text)`
     margin-left: 22px;
     font-weight: bold;
     color: white;
-    margin-top:15px;
+    margin-top:25px;
+    justify-content:center;
     
 `

@@ -27,25 +27,23 @@ export const HeaderTitle = styled(Text)`
     color: white;
 `
 export const UserInformationWrapper = styled(View)`
-    flex: 0.4;
+    flex: 0.35;
     /* background-color: grey; */
 `
 
 export const NickNameWrapper = styled(View)`
-    flex: 0.15;
+    flex: 0.1;
     
     padding: 10px 10px;
 `
 
-// export const MyFriendListWrapper = styled(View)`
-//     flex: 0.4;
-//     margin-top: 20px;
-// `
-export const LogoutButtonWrapper = styled(View)`
-    flex: 0.15;
+export const MyFriendListWrapper = styled(View)`
+    flex: 0.25;
+    padding: 10px 10px;
 `
 
+
 export const PushWrapper = styled(View)`
-    flex: 0.15;
+    flex: 0.1;
     padding: 10px 10px;
 `
