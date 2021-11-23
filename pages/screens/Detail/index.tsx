@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   SafeArea,
   SafeAreaTop,
@@ -31,6 +32,7 @@ import MemoWrite from '../../../src/component/memo/memoWrite';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {ScrollView} from 'react-native-gesture-handler';
 
 function Detail({navigation, route}) {
   const dayDate =
@@ -173,8 +175,12 @@ function Detail({navigation, route}) {
         <MemoContent>{item.memoContent}</MemoContent>
       </MemoListLeft>
       <TouchableOpacity onPressOut={deleteMemo(item.id)}>
-        <MemoDeleteButton
+        {/* <MemoDeleteButton
           source={require('../../../public/images/List/delete.png')}
+        /> */}
+        <MaterialCommunityIcons
+          name="close"
+          style={{fontSize: 24, color: '#ffbe0b'}}
         />
       </TouchableOpacity>
     </MemoListWrapper>
@@ -185,14 +191,22 @@ function Detail({navigation, route}) {
       <SafeAreaTop>
         <Header>
           <TouchableOpacity onPressOut={() => navigation.pop()}>
-            <Button
+            {/* <Button
               source={require('../../../public/images/List/left-arrow.png')}
+            /> */}
+            <MaterialCommunityIcons
+              name="chevron-left"
+              style={{fontSize: 28, color: '#ffbe0b'}}
             />
           </TouchableOpacity>
           <HeaderTitle>{dayDate}</HeaderTitle>
           <TouchableOpacity onPressOut={deleteView}>
-            <Button
+            {/* <Button
               source={require('../../../public/images/List/delete.png')}
+            /> */}
+            <MaterialCommunityIcons
+              name="close"
+              style={{fontSize: 28, color: '#ffbe0b'}}
             />
           </TouchableOpacity>
         </Header>
@@ -208,7 +222,7 @@ function Detail({navigation, route}) {
             <BodyContentEmpty>내용이 없습니다</BodyContentEmpty>
           )}
         </BodyTop>
-        <BodyMiddel>
+        <ScrollView horizontal={true}>
           {route.params.category ? (
             <BodyText>{route.params.category}</BodyText>
           ) : (
@@ -224,10 +238,10 @@ function Detail({navigation, route}) {
           ) : (
             <NullWrapper />
           )}
-        </BodyMiddel>
+        </ScrollView>
       </SafeAreaTop>
       {/* <MemoWrite route={route} /> */}
-      <KeyboardAwareScrollView behavior={'padding'}>
+      <KeyboardAwareScrollView>
         <BodyBottom>
           <FlatList
             data={post}

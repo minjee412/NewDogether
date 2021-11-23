@@ -154,7 +154,7 @@ export default function Register(props: any) {
       </Title_Wrapper>
       <Card_Wrapper>
         <TextInput
-          placeholder="제목을 입력 해주세요. (50자 이내)"
+          placeholder="제목을 입력해주세요. (50자 이내)"
           placeholderTextColor="white"
           returnKeyType="done"
           maxLength={50}
