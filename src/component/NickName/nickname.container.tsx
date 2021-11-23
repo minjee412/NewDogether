@@ -16,7 +16,7 @@ function NickNamePage () {
                 <SafeArea>
                     <NickName_Wrapper>
                         <NickName>
-                            <NickName_Title>닉 네 임</NickName_Title>
+                            <NickName_Title>닉네임</NickName_Title>
                         </NickName>
                         <ChangeNickName>
                             <NickNameInput>

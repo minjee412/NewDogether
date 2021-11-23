@@ -12,8 +12,14 @@ export const SafeAreaTop = styled(View)`
     flex:0.15;    
     display: flex;
     flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    padding-bottom: 5px;
+    padding-top: 30px;
+    /* border: 1px solid lightgray; */
+    padding-left: 20px;
+    padding-right: 20px;
 `
 export const Button = styled(Image)`
     width: 20px;
@@ -24,25 +30,18 @@ export const HeaderTitle = styled(Text)`
     text-align: center;
     font-size: 20px;
     font-weight : 700;
-    color: white;
+    color: #ffbe0b;
 `
 export const UserInformationWrapper = styled(View)`
-    flex: 0.35;
+    flex: 0.4;
     /* background-color: grey; */
+    padding-top:15px;
 `
 
 export const NickNameWrapper = styled(View)`
-    flex: 0.1;
-    
+    flex: 0.20;
     padding: 10px 10px;
 `
-
-export const MyFriendListWrapper = styled(View)`
-    flex: 0.25;
-    padding: 10px 10px;
-`
-
-
 export const PushWrapper = styled(View)`
     flex: 0.1;
     padding: 10px 10px;
