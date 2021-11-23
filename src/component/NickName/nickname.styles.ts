@@ -1,11 +1,11 @@
 import styled from '@emotion/native';
-import { SafeAreaView, View, Text, TextInput } from 'react-native'
+import { SafeAreaView, View, Text } from 'react-native'
 
 export const SafeArea = styled(SafeAreaView)`
     flex:1;
     /* background-color: skyblue; */
     background-color: #222222;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     border-radius: 20px;
 `
 
@@ -25,19 +25,23 @@ export const NickName_Title = styled(Text)`
     margin-left: 20px;
     font-weight: bold;
     color: white;
+    margin-top: 10px;
 `
 
 export const ChangeNickName = styled(View)`
-    flex:0.6;
+    flex:0.3;
     display:flex;
     padding-top:5px;
+    background-color: #222222;
 `
 
-export const NickNameInput = styled(TextInput)`
+export const NickNameInput = styled(Text)`
     font-size: 16px;
     margin-top:5px;
     margin-left:18px;
     margin-right: 20px;
-    background-color: #E5E5E5;
+    color: white;
     border-radius: 10px;
+    
 `
+

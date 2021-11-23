@@ -11,8 +11,8 @@ import {
     // Photo,
     UserInformationWrapper,
     NickNameWrapper,
-    // MyFriendListWrapper,
-    LogoutButtonWrapper,
+    MyFriendListWrapper,
+    // LogoutButtonWrapper,
     PushWrapper,
 } from "./Mypage.styles"
 
@@ -36,12 +36,12 @@ function MyPagePage ({navigation},){
                 <NickNameWrapper>      
                     <NickName/>
                 </NickNameWrapper>
-                {/* <MyFriendListWrapper>
-                    <MyFriendList/>    
-                </MyFriendListWrapper>  */}
                 <PushWrapper>
                     <Push/>
                 </PushWrapper>
+                <MyFriendListWrapper>
+                    <MyFriendList/>    
+                </MyFriendListWrapper> 
             </SafeArea> 
         </> 
     )

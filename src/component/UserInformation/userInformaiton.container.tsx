@@ -32,8 +32,8 @@ export default function UserInformationPage () {
                                 />
                         </LeftInfo>
                         <RightInfo>
-                            <Text style={{color:'black'}}>이름:   {user?.displayName}</Text>  
-                            <Text style={{color:'black'}}>이메일:   {user?.email}</Text>                             
+                            <Text style={{color:'white'}}>이름:   {user?.displayName}</Text>  
+                            <Text style={{color:'white'}}>이메일:   {user?.email}</Text>                             
                         </RightInfo>
                     </InfoWrapper>
                 </InforHeader>
