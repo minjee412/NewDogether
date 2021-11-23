@@ -5,6 +5,7 @@ import firestore from '@react-native-firebase/firestore';
 import styled from '@emotion/native';
 import {SafeAreaView, View, Image, Text, TouchableOpacity} from 'react-native';
 import moment from 'moment';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 LocaleConfig.locales['kr'] = {
   formatAccessibilityLabel: "dddd d 'of' MMMM 'of' yyyy",
@@ -107,8 +108,12 @@ function CalendarScreen({navigation}) {
     <SafeArea>
       <Header>
         <TouchableOpacity onPressOut={() => navigation.pop()}>
-          <Button
+          {/* <Button
             source={require('../../../public/images/List/left-arrow.png')}
+          /> */}
+          <MaterialCommunityIcons
+            name="chevron-left"
+            style={{fontSize: 28, color: '#ffbe0b'}}
           />
         </TouchableOpacity>
         <HeaderTitle>{date}</HeaderTitle>
@@ -158,8 +163,8 @@ const Button = styled(Image)`
   height: 20px;
 `;
 const EmptyButton = styled(View)`
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 `;
 const HeaderTitle = styled(Text)`
   width: 160px;
