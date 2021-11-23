@@ -17,7 +17,7 @@ export default function TabNavigator() {
     <Tab.Navigator
       initialRouteName="Movie"
       screenOptions={{
-        tabBarActiveTintColor: '#b2cfde',
+        tabBarActiveTintColor: '#ffbe0b',
         tabBarInactiveTintColor: isDark ? 'gray' : 'gray',
 
         tabBarStyle: {backgroundColor: '#0d0d0d', borderTopColor: '#0d0d0d'},
