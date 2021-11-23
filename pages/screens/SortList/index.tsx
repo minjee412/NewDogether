@@ -5,20 +5,7 @@ import {Image, SafeAreaView, Text, View} from 'react-native';
 export default function SortList(props: any) {
   // console.log(props.category);
   return (
-    <Wrapper
-      style={{
-        borderWidth: 1,
-        borderColor:
-          props.important === '🍑 🍑 🍑 🍑 🍑'
-            ? '#f48fb1'
-            : props.important === '🍑 🍑 🍑 🍑'
-            ? '#fff59d'
-            : props.important === '🍑 🍑 🍑'
-            ? '#97b498'
-            : props.important === '🍑 🍑'
-            ? '#90CAF9'
-            : '#b39ddb',
-      }}>
+    <Wrapper>
       <View
         style={{
           flexDirection: 'column',

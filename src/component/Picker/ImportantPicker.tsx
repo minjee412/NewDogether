@@ -47,7 +47,7 @@ export default function ImportantPicker(props) {
         <Picker.Item
           style={{color: 'red'}}
           label="🍑 🍑 🍑 🍑 🍑  (5점)"
-          value="🍑 🍑 🍑 🍑 🍑"
+          value="🍑 x 5"
         />
       </Picker>
     </Container>
